@@ -4,7 +4,7 @@ import { albums } from "./albums_data.ts";
 function App() {
   return (
       <section id="center">
-        
+        <AlbumList albums={albums} />
       </section>
   )
 }
