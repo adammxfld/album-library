@@ -1,7 +1,7 @@
 import "./TierFilter.scss";
 
 type TierProps = {
-  setTier: (tier: number) => void;
+  setTierGroup: (tier: number) => void;
 }
 
 const tiers = [
@@ -12,11 +12,11 @@ const tiers = [
 ]
 
 
-function TierFilter({setTier}: TierProps) {
+function TierFilter({setTierGroup}: TierProps) {
   return (
-    <div>
+    <div id="tier-filter">
       {tiers.map((i) => (
-        <button key={i.tier} onClick={() => setTier(i.tier)}>{i.label}</button>
+        <button key={i.tier} onClick={() => setTierGroup(i.tier)}>{i.label}</button>
       ))}
     </div>
   );
