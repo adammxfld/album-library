@@ -1,12 +1,183 @@
 .album-list {
+  list-style: none;
+  line-height: 1.2;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin: 0;
-  padding-left: 1.5rem;
+  gap: 0.1em;
+  margin: 1em auto;
+  width: 95vw;
+  max-width: 500px;
+  container-type: inline-size;
 }
 
 .album-entry {
-  font-size: 1rem;
-  line-height: 1.4;
+  font-size: 4.0cqw;
+  width: 100%;
+  aspect-ratio: 8 / 1.25;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+  transition: transform 0.2s ease;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0.7em;
+    bottom: 0;
+    left: 0.7em;
+    background-color: var(--theme-color);
+    border-radius: 5px;
+    z-index: -1;
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        black 7px,
+        black calc(99% - 7px),
+        transparent
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        black 7px,
+        black calc(99% - 7px),
+        transparent
+      );
+    mask-composite: intersect;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        black 7px,
+        black calc(99% - 7px),
+        transparent
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        black 7px,
+        black calc(99% - 7px),
+        transparent
+      );
+    -webkit-mask-composite: source-in;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0.75em;
+    bottom: 0;
+    left: 0.7em;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 5px;
+    backdrop-filter:
+      blur(10px)
+      saturate(10%)
+      brightness(45%)
+      sepia(30%)
+      opacity(85%);
+
+    -webkit-backdrop-filter:
+      blur(10px)
+      saturate(10%)
+      brightness(45%)
+      sepia(30%)
+      opacity(85%);
+    mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        black 0,
+        black 100%,
+        transparent
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        black 0,
+        black 100%,
+        transparent
+      );
+    mask-composite: intersect;
+    -webkit-mask-image:
+      linear-gradient(
+        to right,
+        transparent,
+        black 0,
+        black 100%,
+        transparent
+      ),
+      linear-gradient(
+        to bottom,
+        transparent,
+        black 0,
+        black 100%,
+        transparent
+      );
+    -webkit-mask-composite: source-in;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-image: url("../assets/cassette-spine.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: scale(1.03);
+    z-index: 3;
+  }
+  &:hover::before,
+  &:active::before,
+  &:focus::before {
+    top: 0.3em;
+    bottom: 0.2em;
+    right: 0.3em;
+    left: 0.5em;
+  }
+  &:hover::after,
+  &:active::after,
+  &:focus::after {
+    top: 0.45em;
+    bottom: 0.35em;
+    right: 0.6em;
+    left: 0.6em;
+    backdrop-filter:
+      saturate(90%)
+      brightness(80%)
+      opacity(100%);
+
+    -webkit-backdrop-filter:
+      saturate(90%)
+      brightness(80%)
+      opacity(100%);
+  }
+}
+
+.copy-artist, .copy-album {
+  color: rgba(255, 255, 255, 0.94);
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  height: auto;
+  align-content: center;
+  width: auto;
+  padding-inline: 1.5em;
+  z-index: 2;
+  > * {
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+.copy-artist{
+  margin-top: 0.25em;
+}
+.copy-album {
+  margin-bottom: 0.25em;
 }
