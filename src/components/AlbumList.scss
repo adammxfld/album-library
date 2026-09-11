@@ -67,6 +67,16 @@
     z-index: -1;
     @include edge-fade-mask(7px);
   }
+
+  // needs media query
+  &:hover,
+  &:active,
+  &:focus {
+    &::before {
+      @include edge-fade-mask(0px);
+    }
+  }
+
   &::after {
     content: "";
     position: absolute;
@@ -81,15 +91,19 @@
     -webkit-backdrop-filter: var(--mute-colors);
     transition: transform 0.2s ease;
   }
-  &:hover::after,
-  &:active::after,
-  &:focus::after {
-    backdrop-filter: var(--focus-highlight);
-    -webkit-backdrop-filter: var(--focus-highlight);
-    background-image: url("../assets/cassette-spine.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    transform: scale(1.05);
+
+  // needs media query
+  &:hover,
+  &:active,
+  &:focus {
+    &::after {
+      backdrop-filter: var(--focus-highlight);
+      -webkit-backdrop-filter: var(--focus-highlight);
+      background-image: url("../assets/cassette-spine.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      transform: scale(1.05);
+    }  
   }
 }
 
