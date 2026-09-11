@@ -1,4 +1,39 @@
+@function edge-fade-gradient($feather, $far-stop) {                                                                                   
+  @return linear-gradient(
+    to right,
+    transparent,
+    black $feather,
+    black $far-stop,
+    transparent
+  ),
+  linear-gradient(
+    to bottom,
+    transparent,
+    black $feather,
+    black $far-stop,
+    transparent
+  );                                                                                                                                        
+}    
+
+@mixin edge-fade-mask($feather: $feather, $far-stop: calc(100% - #{$feather})) {
+  mask-image: #{edge-fade-gradient($feather, $far-stop)};
+  mask-composite: intersect;
+  -webkit-mask-image: #{edge-fade-gradient($feather, $far-stop)};
+  -webkit-mask-composite: source-in;
+}
+
 .album-list {
+  --focus-highlight: 
+    saturate(120%)
+    brightness(90%)
+    opacity(100%);
+  --mute-colors:
+    blur(10px)
+    saturate(10%)
+    brightness(45%)
+    sepia(30%)
+    opacity(85%);
+
   list-style: none;
   line-height: 1.2;
   padding: 0;
@@ -15,146 +50,46 @@
   font-size: 4.0cqw;
   width: 100%;
   aspect-ratio: 8 / 1.25;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   z-index: 0;
-  transition: transform 0.2s ease;
   &::before {
     content: "";
     position: absolute;
     top: 0;
-    right: 0.7em;
+    right: 0;
     bottom: 0;
-    left: 0.7em;
+    left: 0;
     background-color: var(--theme-color);
     border-radius: 5px;
     z-index: -1;
-    mask-image:
-      linear-gradient(
-        to right,
-        transparent,
-        black 7px,
-        black calc(99% - 7px),
-        transparent
-      ),
-      linear-gradient(
-        to bottom,
-        transparent,
-        black 7px,
-        black calc(99% - 7px),
-        transparent
-      );
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(
-        to right,
-        transparent,
-        black 7px,
-        black calc(99% - 7px),
-        transparent
-      ),
-      linear-gradient(
-        to bottom,
-        transparent,
-        black 7px,
-        black calc(99% - 7px),
-        transparent
-      );
-    -webkit-mask-composite: source-in;
+    @include edge-fade-mask(7px);
   }
   &::after {
     content: "";
     position: absolute;
     top: 0;
-    right: 0.75em;
+    right: 0;
     bottom: 0;
-    left: 0.7em;
+    left: 0;
     z-index: 1;
     pointer-events: none;
     border-radius: 5px;
-    backdrop-filter:
-      blur(10px)
-      saturate(10%)
-      brightness(45%)
-      sepia(30%)
-      opacity(85%);
-
-    -webkit-backdrop-filter:
-      blur(10px)
-      saturate(10%)
-      brightness(45%)
-      sepia(30%)
-      opacity(85%);
-    mask-image:
-      linear-gradient(
-        to right,
-        transparent,
-        black 0,
-        black 100%,
-        transparent
-      ),
-      linear-gradient(
-        to bottom,
-        transparent,
-        black 0,
-        black 100%,
-        transparent
-      );
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(
-        to right,
-        transparent,
-        black 0,
-        black 100%,
-        transparent
-      ),
-      linear-gradient(
-        to bottom,
-        transparent,
-        black 0,
-        black 100%,
-        transparent
-      );
-    -webkit-mask-composite: source-in;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-image: url("../assets/cassette-spine.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    transform: scale(1.03);
-    z-index: 3;
-  }
-  &:hover::before,
-  &:active::before,
-  &:focus::before {
-    top: 0.3em;
-    bottom: 0.2em;
-    right: 0.3em;
-    left: 0.5em;
+    backdrop-filter: var(--mute-colors);
+    -webkit-backdrop-filter: var(--mute-colors);
+    transition: transform 0.2s ease;
   }
   &:hover::after,
   &:active::after,
   &:focus::after {
-    top: 0.45em;
-    bottom: 0.35em;
-    right: 0.6em;
-    left: 0.6em;
-    backdrop-filter:
-      saturate(90%)
-      brightness(80%)
-      opacity(100%);
-
-    -webkit-backdrop-filter:
-      saturate(90%)
-      brightness(80%)
-      opacity(100%);
+    backdrop-filter: var(--focus-highlight);
+    -webkit-backdrop-filter: var(--focus-highlight);
+    background-image: url("../assets/cassette-spine.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: scale(1.05);
   }
 }
 
