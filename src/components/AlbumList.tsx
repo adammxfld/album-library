@@ -3,9 +3,10 @@ import "./AlbumList.scss";
 
 export interface AlbumListProps {
   albums: Album[];
+  onSelectAlbum?: (album: Album) => void;
 }
 
-function AlbumList({ albums }: AlbumListProps) { 
+function AlbumList({ albums, onSelectAlbum }: AlbumListProps) {
   const sortedAlbums = [...albums].sort((a, b) =>
     a.title.localeCompare(b.title)
   );
@@ -13,10 +14,11 @@ function AlbumList({ albums }: AlbumListProps) {
   return (
     <ul className="album-list">
       {sortedAlbums.map((album) => (
-        <li 
+        <li
           key={`${album.artist}-${album.title}`}
-          className="album-entry glass"
-          style={{ "--theme-color": album.themeColor } as React.CSSProperties}>
+          className="album-entry"
+          style={{ "--theme-color": album.themeColor } as React.CSSProperties}
+          onClick={() => onSelectAlbum?.(album)}>
             <div className="copy-artist">
               <span>{album.artist}:</span>
             </div>

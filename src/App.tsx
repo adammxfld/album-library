@@ -1,5 +1,6 @@
 import AlbumList from './components/AlbumList.js'
-import { albums } from "./albums_data.ts";
+import AlbumSpotlight from './components/AlbumSpotlight.js'
+import { albums, type Album } from "./albums_data.ts";
 import { useState } from 'react';
 import TierFilter from './components/TierFilter.tsx';
 import GenreFilter from './components/GenreFilter.tsx';
@@ -7,6 +8,7 @@ import GenreFilter from './components/GenreFilter.tsx';
 function App() {
   const [tierGroup, setTierGroup] = useState(1);
   const [genreSelections, setGenreSelections] = useState<string[]>([]);
+  const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
 
   function handleGenreChange(genre: string, checked: boolean) {
     setGenreSelections((currentGenres) => {
@@ -30,7 +32,8 @@ function App() {
       <section>
         <TierFilter setTierGroup={setTierGroup} />
         <GenreFilter onGenreChange={handleGenreChange}/>
-        <AlbumList albums={filteredAlbums} />
+        <AlbumSpotlight album={selectedAlbum} onClose={() => setSelectedAlbum(null)} />
+        <AlbumList albums={filteredAlbums} onSelectAlbum={setSelectedAlbum} />
       </section>
   )
 }

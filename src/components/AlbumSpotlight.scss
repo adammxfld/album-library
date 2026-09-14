@@ -1,0 +1,92 @@
+.album-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  width: 100vw;
+  max-width: 470px;
+  aspect-ratio: 407 / 617;
+  height: auto;
+  margin-inline: auto;
+  margin-top: 10vh;
+  background-color: #000;
+  transform: translateX(-100vw);
+  transition: transform 0.5s ease;
+  container-type: inline-size;
+  touch-action: pan-y;
+  user-select: none;
+
+  &--visible {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+}
+
+
+.album-case {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 11;
+  background-image: url("../assets/cassette-case.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+  pointer-events: none;
+}
+
+.album-spotlight-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 11;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.album-artwork {
+  padding: 1.25em;
+  img {
+    width: 100%;
+  }
+}
+.album-info {
+  width: auto;
+  font-size: 5cqw;
+  font-weight: 600;
+  line-height: 1;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1em 2em;
+  margin: 0;
+  > * {
+    align-content: center;
+  }
+  .album-artist {
+    flex: 1 0 80%;
+    font-size: 4cqw;
+    padding-bottom: 1em;
+  }
+  .album-year {
+    flex: 0 1 20%;
+    font-size: 4cqw;
+    text-align: end;
+  }
+  .album-title {
+    flex-basis: 100%;
+  }
+}
