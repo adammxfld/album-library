@@ -8,6 +8,7 @@ import { useAlbumFilters } from './hooks/useAlbumFilters.ts';
 function App() {
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
   const {
+    tierGroup,
     setTierGroup,
     genreSelections,
     handleGenreChange,
@@ -18,6 +19,7 @@ function App() {
   return (
     <>
       <Filters
+        tierGroup={tierGroup}
         onTierChange={setTierGroup}
         genres={genreOptions}
         selectedGenres={genreSelections}
