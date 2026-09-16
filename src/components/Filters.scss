@@ -1,0 +1,11 @@
+nav {
+    height: 10vh;
+    overflow: auto;
+
+    & div {
+        margin: 1em;
+    }
+    & form {
+        margin: 1em;
+    }
+}
