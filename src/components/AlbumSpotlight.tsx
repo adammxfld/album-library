@@ -17,10 +17,6 @@ const FLING_VELOCITY = 0.5; // px/ms; a fast flick closes regardless of distance
 const MIN_FLING_SPEED = 0.6; // px/ms floor for the release-animation duration
 const SNAP_BACK_MS = 250;
 
-function albumKey(album: Album | null) {
-  return album ? `${album.artist}-${album.title}` : null;
-}
-
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
@@ -140,7 +136,12 @@ function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
     : undefined;
 
   return (
-    <>
+    <section className="spotlight-panel">
+      <div
+        className={`album-back-mask${isVisible ? " album-back-mask--visible" : ""}`}
+        onClick={onClose}
+        aria-hidden={isVisible ? undefined : true}
+      />
       <div
         ref={panelRef}
         className={`album-spotlight${isVisible ? " album-spotlight--visible" : ""}`}
@@ -182,7 +183,7 @@ function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
           &times;
         </button>
       )}
-    </>
+    </section>
   );
 }
 

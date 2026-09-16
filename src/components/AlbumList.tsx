@@ -12,22 +12,24 @@ function AlbumList({ albums, onSelectAlbum }: AlbumListProps) {
   );
 
   return (
-    <ul className="album-list">
-      {sortedAlbums.map((album) => (
-        <li
-          key={`${album.artist}-${album.title}`}
-          className="album-entry"
-          style={{ "--theme-color": album.themeColor } as React.CSSProperties}
-          onClick={() => onSelectAlbum?.(album)}>
-            <div className="copy-artist">
-              <span>{album.artist}:</span>
-            </div>
-            <div className="copy-album">
-              <i>{album.title}</i>
-            </div>
-        </li>
-      ))}
-    </ul>
+    <section className="library">
+      <ul className="album-list">
+        {sortedAlbums.map((album) => (
+          <li
+            key={`${album.artist}-${album.title}`}
+            className="album-entry"
+            style={{ "--theme-color": album.themeColor } as React.CSSProperties}
+            onClick={() => onSelectAlbum?.(album)}>
+              <div className="copy-artist">
+                <span>{album.artist}:</span>
+              </div>
+              <div className="copy-album">
+                <i>{album.title}</i>
+              </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 

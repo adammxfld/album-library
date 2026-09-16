@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: var(--z-index-spotlight);
   width: 100vw;
   max-width: 470px;
   aspect-ratio: 407 / 617;
@@ -30,31 +30,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 11;
+  z-index: calc(var(--z-index-spotlight) + 1);
   background-image: url("../assets/cassette-case.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
   pointer-events: none;
-}
-
-.album-spotlight-close {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 11;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
 }
 
 .album-artwork {
@@ -88,5 +69,42 @@
   }
   .album-title {
     flex-basis: 100%;
+  }
+}
+
+
+
+.album-spotlight-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: calc(var(--z-index-spotlight) + 2);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.album-back-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(29, 29, 29, 0);
+  transition: background-color 0.3s ease;
+  z-index: calc(var(--z-index-spotlight) - 1);
+  pointer-events: none;
+
+  &--visible {
+    background-color: rgba(29, 29, 29, 0.85);
+    pointer-events: auto;
   }
 }

@@ -1,4 +1,5 @@
 :root {
+  --z-index-spotlight: 10;
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
