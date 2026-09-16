@@ -1,11 +1,12 @@
 nav {
     height: 10vh;
     overflow: auto;
+    margin: 0 auto;
+    width: 95vw;
+    max-width: 500px;
 
-    & div {
-        margin: 1em;
-    }
-    & form {
-        margin: 1em;
+    div,
+    form {
+        margin-block: 1em;
     }
 }
