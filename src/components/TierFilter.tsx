@@ -19,7 +19,7 @@ function TierFilter({tierGroup, setTierGroup}: TierProps) {
       {tiers.map((i) => (
         <button
           key={i.tier}
-          className={i.tier === tierGroup ? "selected" : undefined}
+          className={`tier-${i.tier}${i.tier === tierGroup ? " selected" : ""}`}
           aria-pressed={i.tier === tierGroup}
           onClick={() => setTierGroup(i.tier)}>
           {i.label}
