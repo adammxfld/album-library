@@ -2,7 +2,7 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 
-const filePath = path.resolve("src/albums_data.ts");
+const filePath = path.resolve("src/albums_data-small.ts");
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -95,7 +95,7 @@ async function main() {
 
   // Find each album object and capture artist + title.
   const albumRegex =
-    /\{\s*artist:\s*"([^"]+)"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?\n\s*\},/g;
+    /\{\s*artist:\s*"([^"]+)"[\s\S]*?title:\s*"([^"]+)"[\s\S]*?\n\s*\},?/g;
 
   const matches = [...file.matchAll(albumRegex)];
 
@@ -157,7 +157,7 @@ async function main() {
           );
         } else {
           albumObject = albumObject.replace(
-            /\n\s*\},$/,
+            /\n\s*\},?$/,
             `\n    spotifyUrl: "${spotifyUrl}",\n  },`
           );
         }
@@ -179,7 +179,7 @@ async function main() {
           );
         } else {
           albumObject = albumObject.replace(
-            /\n\s*\},$/,
+            /\n\s*\},?$/,
             `\n    image: "${image}",\n  },`
           );
         }
@@ -212,7 +212,7 @@ async function main() {
             );
           } else {
             albumObject = albumObject.replace(
-              /\n\s*\},$/,
+              /\n\s*\},?$/,
               `\n    spotifyGenre: ${JSON.stringify(spotifyGenres)},\n  },`
             );
           }
@@ -232,7 +232,7 @@ async function main() {
 
   fs.writeFileSync(filePath, file);
 
-  console.log("Done. albums_data.ts updated.");
+  console.log("Done. albums_data-small.ts updated.");
 }
 
 main();
