@@ -20,6 +20,7 @@ function AlbumList({ albums, onSelectAlbum }: AlbumListProps) {
             className="album-entry"
             style={{ "--theme-color": album.themeColor } as React.CSSProperties}
             onClick={() => onSelectAlbum?.(album)}>
+              <div className="spine"></div>
               <div className="copy-artist">
                 <span>{album.artist}:</span>
               </div>

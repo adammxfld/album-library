@@ -5,34 +5,74 @@
     gap: 0.75em;
     padding-block: 1.5em 2em;
     box-sizing: border-box;
+}
+.btn-filter {
+    flex: 1 0 0;
+    padding-inline: 1.5em;
+    background-color: rgb(250, 250, 250, 5%);
+    border: 2px solid rgb(250, 250, 250, 20%);
+    border-radius: 5px;
+    
+    &.tier-1 {
+        flex: 1 100%;
+    }
+    &.tier-0 {
+        flex: 0 0 5%;
+    }
+    &:focus,
+    &:active {
+        background-color: rgb(250, 250, 250, 10%);
+        border-color: rgb(250, 250, 250, 30%);
+    }
 
-    button {
-        flex: 1 0 0;
-        padding-inline: 1.5em;
-        background-color: rgb(250, 250, 250, 5%);
-        border: 2px solid rgb(250, 250, 250, 20%);
-        border-radius: 5px;
-        
-        &.tier-1 {
-            flex: 1 100%;
-        }
-        &.tier-0 {
-            flex: 0 0 5%;
-        }
+    &.selected,
+    &.selected:focus,
+    &.selected:active {
+        background-color: rgba(102, 255, 187, 20%);
+        border-color: rgb(102, 255, 187, 50%);
+    }
+}
 
-        &:hover,
+@media (prefers-color-scheme: light) {
+    .btn-filter {
+        background-color: rgb(105, 105, 105, 5%);
+        border-color: rgb(0, 0, 0, 25%);
         &:focus,
         &:active {
-            background-color: rgb(250, 250, 250, 10%);
-            border: 2px solid rgb(250, 250, 250, 30%);
+            border-color: rgb(0, 0, 0, 15%);
         }
-
         &.selected,
-        &.selected:hover,
         &.selected:focus,
         &.selected:active {
+            background-color: rgb(106, 215, 167, 20%);
+            border-color: rgb(29, 131, 85, 75%);
+        }
+    }
+}
+    
+@media (hover: hover) and (pointer: fine) {
+    .btn-filter {
+        &:hover {
+            background-color: rgb(250, 250, 250, 10%);
+            border-color: rgb(250, 250, 250, 30%);
+        }
+
+        &.selected:hover {
             background-color: rgba(102, 255, 187, 20%);
-            border: 2px solid rgb(102, 255, 187, 50%);
+            border-color: rgb(102, 255, 187, 50%);
+        }
+
+    }
+
+    @media (prefers-color-scheme: light) {
+        .btn-filter {
+            &:hover {
+                border-color: rgb(0, 0, 0, 15%);
+            }
+            &.selected:hover {
+                background-color: rgb(106, 215, 167, 20%);
+                border-color: rgb(29, 131, 85, 75%);
+            }
         }
     }
 }
