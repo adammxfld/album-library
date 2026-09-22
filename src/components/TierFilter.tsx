@@ -6,9 +6,9 @@ type TierProps = {
 }
 
 const tiers = [
-  { tier: 1, label: "The Top" },
-  { tier: 2, label: "Close Favorites" },
-  { tier: 3, label: "Don't Miss" },
+  { tier: 1, label: "Top 50 Favorites" },
+  { tier: 2, label: "50 >" },
+  { tier: 3, label: "Final Favs" },
   { tier: 0, label: "All" }
 ]
 
@@ -19,7 +19,7 @@ function TierFilter({tierGroup, setTierGroup}: TierProps) {
       {tiers.map((i) => (
         <button
           key={i.tier}
-          className={`tier-${i.tier}${i.tier === tierGroup ? " selected" : ""}`}
+          className={`btn-filter tier-${i.tier}${i.tier === tierGroup ? " selected" : ""}`}
           aria-pressed={i.tier === tierGroup}
           onClick={() => setTierGroup(i.tier)}>
           {i.label}

@@ -1,17 +1,17 @@
 nav {
-    --nav-height: 19vh;
     --nav-transition-duration: 0.4s;
     height: var(--nav-height);
     width: 100%;
     overflow: hidden;
     z-index: 1;
     position: fixed;
-    background-color: var(--bg);
+    background-color: var(--contrast-bg);
     transition: height var(--nav-transition-duration) ease;
     touch-action: none;
     user-select: none;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    border-bottom: 1px solid rgba(175, 175, 175, 0.065);
     box-shadow: var(--shadow);
 
     div,
@@ -34,18 +34,14 @@ nav {
         width: 3em;
         z-index: 15;;
     }
-    // &::after {
-    //     content: "";
-    //     position: fixed;
-    //     top: 0;
-    //     left: 0;
-    //     right: 0;
-    //     height: calc(var(--nav-height));
-    //     z-index: -1;
-    //     transition: height var(--nav-transition-duration) ease;
-    // }
 
     &.open {
         --nav-height: 75vh;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    nav {
+        border-bottom: 1px solid rgba(175, 175, 175, 0.75);
     }
 }
