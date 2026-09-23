@@ -1,18 +1,22 @@
 nav {
     --nav-transition-duration: 0.4s;
-    height: var(--nav-height);
+    --nav-offset: 54vh;
+    height: 75vh;
     width: 100%;
-    overflow: hidden;
+    overflow-y: auto;
     z-index: 1;
     position: fixed;
+    bottom: 0;
+    left: 0;
     background-color: var(--contrast-bg);
-    transition: height var(--nav-transition-duration) ease;
+    transform: translateY(var(--nav-offset));
+    transition: transform var(--nav-transition-duration) ease;
     touch-action: none;
     user-select: none;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom: 1px solid rgba(175, 175, 175, 0.065);
-    box-shadow: var(--shadow);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top: 1px solid rgba(175, 175, 175, 0.065);
+    box-shadow: rgba(25, 19, 27, 0.5) 0 -6px 4px -4px, rgba(25, 19, 27, 0.25) 0 -8px 4px -4px;
 
     div,
     form {
@@ -23,7 +27,7 @@ nav {
     &::before {
         content: "";
         position: absolute;
-        bottom: 0.55em;
+        top: 0.55em;
         left: 50%;
         transform: translateX(-50%);
         display: block;
@@ -32,16 +36,66 @@ nav {
         border-radius: 5px;
         overflow: visible;
         width: 3em;
-        z-index: 15;;
+        z-index: 15;
+    }
+
+    .open-handle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        height: 4.5vh;
+        z-index: 14;
+        cursor: pointer;
     }
 
     &.open {
-        --nav-height: 75vh;
+        --nav-offset: 0;
     }
 }
 
 @media (prefers-color-scheme: light) {
     nav {
-        border-bottom: 1px solid rgba(175, 175, 175, 0.75);
+        border-top: 1px solid rgba(175, 175, 175, 0.75);
+    }
+}
+
+@media (min-width: 768px) {
+    nav {
+        pointer-events: none;
+        left: unset;
+        right: 0;
+        overflow: visible;
+        --nav-transition-duration: 0;
+        --nav-offset: 0;
+        height: calc(90vh - 0.75em);
+        width: 17vw;
+        padding-right: 1vw;
+        border: none;
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        background-color: unset;
+        font-size: 14px;
+        &::before {
+            content: unset;
+        }
+        .open-handle {
+            display: none;
+        }
+    }
+    #tier-filter,
+    #genre-filter {
+        margin-inline: 1em;
+        width: auto;
+        pointer-events: auto;
+    }
+}
+
+@media (min-width: 828px) {
+    nav {
+        width: clamp(140.76px, calc(-213.677px + 42.8065vw), 300px);
     }
 }

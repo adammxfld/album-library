@@ -24,9 +24,12 @@
 
 .library {
   position: relative;
-  overflow: auto;
-  margin-top: var(--nav-height);
-  height: calc(100vh - var(--nav-height));
+  // Reserves space for the *closed* nav footprint only
+  // this stays pinned to nav's resting height (must match Filters.scss's closed --nav-height).
+  --padding-top: 10vh;
+  --closed-nav-height: 19vh;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 
   &::after {
     content: "";
@@ -40,28 +43,32 @@
 }
 
 .album-list {
-  --focus-highlight: 
-    blur(0px)
-    saturate(120%)
-    brightness(90%)
-    sepia(0%)
-    opacity(100%);
   --mute-colors:
     blur(10px)
     saturate(10%)
     brightness(45%)
     sepia(30%)
     opacity(85%);
-
+  --focus-highlight: 
+    blur(0px)
+    saturate(120%)
+    brightness(90%)
+    sepia(0%)
+    opacity(100%);
+  overflow-y: auto;
+  overflow-x: visible;
   list-style: none;
   line-height: 1.2;
-  padding: 0.75em 0;
+  padding-inline: 0.75em;
   display: flex;
   flex-direction: column;
   gap: 0.1em;
   margin: 0 auto;
   width: 95vw;
   max-width: 500px;
+  padding-inline: 0.6em;
+  padding-top: calc(var(--padding-top) + 0.75em);
+  padding-bottom: calc(var(--closed-nav-height) + 0.75em);
   container-type: inline-size;
 }
 @media (prefers-color-scheme: light) {
@@ -159,6 +166,8 @@
 }
 
 .copy-artist, .copy-album {
+  z-index: 2;
+  position: relative;
   color: rgba(255, 255, 255, 0.94);
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -166,7 +175,6 @@
   align-content: center;
   width: auto;
   padding-inline: 1.5em;
-  z-index: 2;
   > * {
     display: block;
     white-space: nowrap;

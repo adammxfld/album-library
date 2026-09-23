@@ -19,6 +19,11 @@ export interface UseDrawerOptions {
   flingVelocity?: number; // px/ms magnitude that forces a commit regardless of distance
   minFlingSpeed?: number; // px/ms floor used to time the commit animation
   snapBackMs?: number; // duration when a drag doesn't cross the threshold
+  dragThreshold?: number; // px of movement required before a click/tap becomes a drag
+  // Flip which raw pointer direction increases `value`. Needed when the
+  // closed edge is anchored to the far side (e.g. bottom/right) instead of
+  // the near side (top/left), so "drag toward the open edge" still opens.
+  invert?: boolean;
 }
 
 export interface UseDrawerResult {
@@ -50,6 +55,8 @@ export function useDrawer({
   flingVelocity = 0.5,
   minFlingSpeed = 0.6,
   snapBackMs = 250,
+  invert = false,
+  dragThreshold = 8,
 }: UseDrawerOptions): UseDrawerResult {
   const [drag, setDrag] = useState<DragState | null>(null);
 
@@ -62,9 +69,14 @@ export function useDrawer({
   const lastCoordRef = useRef(0);
   const lastTimeRef = useRef(0);
   const velocityRef = useRef(0);
+  // True once the current gesture has moved past dragThreshold. Below that,
+  // we stay completely uninvolved (no capture, no state) so a click/tap on
+  // content inside the drawer resolves natively instead of being hijacked.
+  const isDraggingRef = useRef(false);
 
   function coordOf(event: ReactPointerEvent<HTMLElement>) {
-    return axis === "x" ? event.clientX : event.clientY;
+    const raw = axis === "x" ? event.clientX : event.clientY;
+    return invert ? -raw : raw;
   }
 
   function onPointerDown(event: ReactPointerEvent<HTMLElement>) {
@@ -82,9 +94,11 @@ export function useDrawer({
     lastCoordRef.current = coord;
     lastTimeRef.current = event.timeStamp;
     velocityRef.current = 0;
+    isDraggingRef.current = false;
 
-    event.currentTarget.setPointerCapture(event.pointerId);
-    setDrag({ value: startValueRef.current });
+    // Deliberately no setPointerCapture / setDrag here — see onPointerMove.
+    // Engaging immediately would hijack clicks/taps on interactive content
+    // inside the drawer before the browser can resolve them natively.
   }
 
   function onPointerMove(event: ReactPointerEvent<HTMLElement>) {
@@ -97,6 +111,15 @@ export function useDrawer({
     velocityRef.current = (coord - lastCoordRef.current) / dt; // px/ms
     lastCoordRef.current = coord;
     lastTimeRef.current = event.timeStamp;
+
+    if (!isDraggingRef.current) {
+      if (Math.abs(coord - startCoordRef.current) < dragThreshold) {
+        return; // still within click/tap slop — stay uninvolved
+      }
+      isDraggingRef.current = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      setDrag({ value: startValueRef.current });
+    }
 
     const lo = Math.min(openValueRef.current, closedValueRef.current);
     const hi = Math.max(openValueRef.current, closedValueRef.current);
@@ -113,6 +136,10 @@ export function useDrawer({
       return;
     }
     pointerIdRef.current = null;
+
+    if (!isDraggingRef.current) {
+      return; // never crossed the threshold — this was a click/tap, not a drag
+    }
 
     const openValue = openValueRef.current;
     const closedValue = closedValueRef.current;

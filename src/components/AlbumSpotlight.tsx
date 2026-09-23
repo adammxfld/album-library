@@ -101,6 +101,7 @@ function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
           )}
         </ul>
         <div className="album-case" />
+        <div className="cassette" />
       </div>
       {isVisible && (
         <button
