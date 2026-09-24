@@ -13,9 +13,9 @@ nav {
     transition: transform var(--nav-transition-duration) ease;
     touch-action: none;
     user-select: none;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-top: 1px solid rgba(175, 175, 175, 0.065);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top: 1px solid rgb(255 255 255 / 5%);
     box-shadow: rgba(25, 19, 27, 0.5) 0 -6px 4px -4px, rgba(25, 19, 27, 0.25) 0 -8px 4px -4px;
 
     div,
