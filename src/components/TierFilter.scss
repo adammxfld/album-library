@@ -1,10 +1,9 @@
 #tier-filter {
-    height: 19vh;
     display: flex;
     flex-flow: row wrap;
     gap: 0.75em;
-    padding-block: 1.5em 2em;
-    box-sizing: border-box;
+    padding-block: 5vh 4vh;
+    align-content: flex-start;
 }
 .btn-filter {
     flex: 1 0 0;
@@ -12,9 +11,11 @@
     background-color: rgb(250, 250, 250, 5%);
     border: 2px solid rgb(250, 250, 250, 20%);
     border-radius: 5px;
+    height: 5vh;
     
     &.tier-1 {
         flex: 1 100%;
+        height: 6vh;
     }
     &.tier-0 {
         flex: 0 0 5%;
@@ -73,6 +74,19 @@
                 background-color: rgb(106, 215, 167, 20%);
                 border-color: rgb(29, 131, 85, 75%);
             }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    #tier-filter {
+        padding-block: 1em 1em;
+    }
+    .btn-filter {
+        padding-inline: 0.5em;
+        flex: 1 0 45%;
+        &.tier-0 {
+            flex: 1 0 100%;
         }
     }
 }

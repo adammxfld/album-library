@@ -7,8 +7,8 @@ type TierProps = {
 
 const tiers = [
   { tier: 1, label: "Top 50 Favorites" },
-  { tier: 2, label: "50 >" },
-  { tier: 3, label: "Final Favs" },
+  { tier: 2, label: "> 50" },
+  { tier: 3, label: "More" },
   { tier: 0, label: "All" }
 ]
 

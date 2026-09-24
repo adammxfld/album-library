@@ -18,6 +18,8 @@ function App() {
 
   return (
     <>
+      <AlbumSpotlight album={selectedAlbum} onClose={() => setSelectedAlbum(null)} />
+      <AlbumList albums={filteredAlbums} onSelectAlbum={setSelectedAlbum} />
       <Filters
         tierGroup={tierGroup}
         onTierChange={setTierGroup}
@@ -25,8 +27,6 @@ function App() {
         selectedGenres={genreSelections}
         onGenreChange={handleGenreChange}
       />
-      <AlbumSpotlight album={selectedAlbum} onClose={() => setSelectedAlbum(null)} />
-      <AlbumList albums={filteredAlbums} onSelectAlbum={setSelectedAlbum} />
     </>
   )
 }
