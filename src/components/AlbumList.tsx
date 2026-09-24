@@ -25,7 +25,7 @@ function AlbumList({ albums, onSelectAlbum }: AlbumListProps) {
                 <span>{album.artist}:</span>
               </div>
               <div className="copy-album">
-                <i>{album.title}</i>
+                <cite>{album.title}</cite>
               </div>
           </li>
         ))}

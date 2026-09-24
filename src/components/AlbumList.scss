@@ -67,7 +67,7 @@
   width: 95vw;
   max-width: 500px;
   padding-inline: 0.6em;
-  padding-top: calc(var(--padding-top) + 0.75em);
+  padding-top: calc(var(--padding-top) + 0.5em);
   padding-bottom: calc(var(--closed-nav-height) + 0.75em);
   container-type: inline-size;
 }
@@ -188,4 +188,5 @@
 }
 .copy-album {
   margin-bottom: 0.25em;
+  font-style: italic;
 }
