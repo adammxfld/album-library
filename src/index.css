@@ -1,11 +1,11 @@
 :root {
-  --nav-height: 19vh;
+  --nav-height: 10vh;
   --z-index-spotlight: 10;
 
   --text: #adbfc2;
   --text-h: #f3f4f6;
   --bg: #19131b;
-  --contrast-bg: #262028;
+  --contrast-bg: #0d070f;
   --border: #2e303a;
   --code-bg: #1f2028;
   --accent: #c084fc;
@@ -27,6 +27,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+@media (min-width: 768px) {
+  :root {
+    --nav-height: 15vh;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -52,7 +57,7 @@ body {
 }
 
 #root {
-  width: 1126px;
+  width: 99vw;
   max-width: 100%;
   margin: 0 auto;
   min-height: 100svh;

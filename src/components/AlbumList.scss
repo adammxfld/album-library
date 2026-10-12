@@ -44,15 +44,15 @@
 
 .album-list {
   --mute-colors:
-    blur(10px)
+    blur(5px)
     saturate(10%)
-    brightness(45%)
-    sepia(30%)
-    opacity(85%);
+    brightness(20%)
+    sepia(0%)
+    opacity(70%);
   --focus-highlight: 
     blur(0px)
     saturate(120%)
-    brightness(90%)
+    brightness(60%)
     sepia(0%)
     opacity(100%);
   overflow-y: auto;
@@ -65,7 +65,7 @@
   gap: 0.1em;
   margin: 0 auto;
   width: 95vw;
-  max-width: 500px;
+  max-width: 425px;
   padding-inline: 0.6em;
   padding-top: calc(var(--padding-top) + 0.5em);
   padding-bottom: calc(var(--closed-nav-height) + 0.75em);
@@ -83,14 +83,29 @@
 }
 
 .album-entry {
-  font-size: 4.0cqw;
-  width: 100%;
-  aspect-ratio: 8 / 1.25;
+  --entry-z-index: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  z-index: 0;
+  img{
+    position: absolute;
+    top: 0.5em;
+    right: 0.75em;
+    height: calc(100% - 1em);
+    width: auto;
+    opacity: 0.7;
+  }
+}
+
+.album-entry button {
+  border: none;
+  text-align: left;
+  font-size: 4.0cqw;
+  width: 100%;
+  aspect-ratio: 8 / 1.25;
+  background-color: var(--bg);
   &::before {
     content: "";
     position: absolute;
@@ -100,14 +115,7 @@
     left: 0;
     background-color: var(--theme-color);
     border-radius: 5px;
-    z-index: -1;
     @include edge-fade-mask(7px);
-  }
-  &:active,
-  &:focus {
-    &::before {
-      @include edge-fade-mask(0px);
-    }
   }
 
   &::after {
@@ -117,19 +125,32 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
     pointer-events: none;
     border-radius: 5px;
     -webkit-backdrop-filter: var(--mute-colors);
     backdrop-filter: var(--mute-colors);
-    transition: -webkit-backdrop-filter 0.2s ease 0.2s, backdrop-filter 0.2s ease 0.1s;
+    transition: -webkit-backdrop-filter 0.15s ease 0.02s, backdrop-filter 0.15s ease 0.02s;
   }
   &:active,
-  &:focus {
+  &:focus-visible {
+    &::before {
+      @include edge-fade-mask(4px);
+    }
     &::after {
       -webkit-backdrop-filter: var(--focus-highlight);
       backdrop-filter: var(--focus-highlight);
     }  
+  }  
+}
+@media (hover: hover) and (pointer: fine) {
+  .album-entry {
+    button:hover::before {
+      @include edge-fade-mask(4px);
+    }
+    button:hover::after {
+      -webkit-backdrop-filter: var(--focus-highlight);
+      backdrop-filter: var(--focus-highlight);
+    }
   }
 }
 
@@ -144,29 +165,23 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   opacity: 0;
-  // Applies on hover-out: leaving hover reverts to this rule
-  transition: transform 0.2s ease, opacity 0.1s ease-in-out 0.15s;
+  transition: transform 0.1s ease, opacity 0.1s ease-in-out;
+  pointer-events: none;
 }
-
+button:active + .spine,
+button:focus-visible + .spine {
+  transform: scale(1.015);
+  opacity: 1;
+}
 @media (hover: hover) and (pointer: fine) {
-  .album-entry {
-    &:hover {
-      .spine {
-        transform: scale(1.05);
-        opacity: 1;
-        // Applies on hover-in, overriding the resting rule's transition
-        transition: transform 0.2s ease 0.15s, opacity 0.1s ease-in-out;
-      }
-      &::after {
-        -webkit-backdrop-filter: var(--focus-highlight);
-        backdrop-filter: var(--focus-highlight);
-      }  
-    }
+  button:hover + .spine {
+    transform: scale(1.015);
+    opacity: 0.75;
   }
 }
 
 .copy-artist, .copy-album {
-  z-index: 2;
+  z-index: calc(var(--entry-z-index) + 1);
   position: relative;
   color: rgba(255, 255, 255, 0.94);
   font-weight: 600;
@@ -190,3 +205,59 @@
   margin-bottom: 0.25em;
   font-style: italic;
 }
+
+.no-albums {
+  font-size: 10cqw;
+  opacity: 0.75;
+  padding-top: var(--padding-top);
+  padding-inline: 0;
+  margin: 10% auto;
+  overflow: visible;
+  text-align: center;
+  word-wrap: anywhere;
+}
+@media (min-width: 768px) {
+  .library {
+    padding-left: 1em;
+    border-right: 1px solid rgb(250, 250, 250, 5%);
+    border-radius: 0;
+  }
+  .album-list {
+    padding-block: 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+  .album-entry:first-of-type {
+    margin-top: 1.5em
+  }
+  .album-entry:last-of-type {
+    margin-bottom: 1.5em
+  }
+}
+// Rotated in Large devices
+// @media (min-width: 768px) {
+//   .library {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+
+//     width: 100vh;
+//     height: 100vw;
+
+//     transform-origin: top left;
+//     transform: translateY(100vh) rotate(-90deg);
+
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: safe center;
+//   }
+
+//   .album-list {
+//     position: static;
+//     padding-block: 3em;
+//     margin: 0 0 0 30vh;
+//     overscroll-behavior: none;
+//     overflow-x: hidden;
+//     scrollbar-width: none;
+//   }
+// }

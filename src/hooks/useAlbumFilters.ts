@@ -6,6 +6,7 @@ export interface UseAlbumFiltersResult {
   setTierGroup: (tier: number) => void;
   genreSelections: string[];
   handleGenreChange: (genre: string, checked: boolean) => void;
+  clearGenres: () => void;
   genreOptions: string[];
   filteredAlbums: Album[];
 }
@@ -21,6 +22,10 @@ export function useAlbumFilters(albums: Album[]): UseAlbumFiltersResult {
       }
       return currentGenres.filter((item) => item !== genre);
     });
+  }
+
+  function clearGenres() {
+    setGenreSelections([]);
   }
 
   const genreOptions = [...new Set(albums.flatMap((album) => album.genres))];
@@ -39,6 +44,7 @@ export function useAlbumFilters(albums: Album[]): UseAlbumFiltersResult {
     setTierGroup,
     genreSelections,
     handleGenreChange,
+    clearGenres,
     genreOptions,
     filteredAlbums,
   };

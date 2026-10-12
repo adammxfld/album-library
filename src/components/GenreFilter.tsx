@@ -1,14 +1,21 @@
+import { useMediaQuery } from '../hooks/useMediaQuery.ts';
 import "./GenreFilter.scss";
 
 export interface GenreFilterProps {
   genres: string[];
   selectedGenres: string[];
   onGenreChange: (genre: string, checked: boolean) => void;
+  onClearGenres: () => void;
 }
 
-function GenreFilter({ genres, selectedGenres, onGenreChange }: GenreFilterProps) {
+function GenreFilter({ genres, selectedGenres, onGenreChange, onClearGenres }: GenreFilterProps) {
+  const isLargeScreen = useMediaQuery("(min-width: 768px)");
+
   return (
-    <form id="genre-filter">
+    <form className="genre-filter">
+      {isLargeScreen && (
+        <h3>Filter by genre</h3>
+      )}
       {genres.map((genre) => (
         <label key={genre}>
           <input
@@ -18,6 +25,13 @@ function GenreFilter({ genres, selectedGenres, onGenreChange }: GenreFilterProps
           {genre}
         </label>
       ))}
+      <button
+        type="button"
+        className="btn-clear"
+        disabled={selectedGenres.length === 0}
+        onClick={onClearGenres}>
+        Clear filters
+      </button>
     </form>
   );
 }

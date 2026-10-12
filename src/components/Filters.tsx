@@ -4,6 +4,7 @@ import TierFilter from "./TierFilter";
 import GenreFilter from "./GenreFilter";
 import { useDrawer } from "../hooks/useDrawer";
 import "./Filters.scss"
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 export interface FiltersProps {
   tierGroup: number;
@@ -11,23 +12,30 @@ export interface FiltersProps {
   genres: string[];
   selectedGenres: string[];
   onGenreChange: (genre: string, checked: boolean) => void;
+  onClearGenres: () => void;
 }
-
+// Must match Filters.scss: nav height, and height minus --nav-offset when closed.
 const CLOSED_HEIGHT_VH = 19;
 const OPEN_HEIGHT_VH = 75;
+const LARGE_SCREEN_QUERY = "(min-width: 768px)";
+const LARGE_CLOSED_HEIGHT_VH = 15;
+const LARGE_OPEN_HEIGHT_VH = 45;
 const OPEN_DISTANCE_RATIO = 0.05; // fraction of the open/closed travel dragged to force a toggle
 
 function vhToPx(vh: number) {
   return (window.innerHeight * vh) / 100;
 }
 
-// How far nav (fixed height, 75vh) has to translate to go from fully open
-// (0) to closed (only CLOSED_HEIGHT_VH peeking above the viewport bottom).
+// How far nav (fixed height) has to translate to go from fully open (0) to
+// closed (only the closed height peeking above the viewport bottom).
 function travelPx() {
-  return vhToPx(OPEN_HEIGHT_VH - CLOSED_HEIGHT_VH);
+  return window.matchMedia(LARGE_SCREEN_QUERY).matches
+    ? vhToPx(LARGE_OPEN_HEIGHT_VH - LARGE_CLOSED_HEIGHT_VH)
+    : vhToPx(OPEN_HEIGHT_VH - CLOSED_HEIGHT_VH);
 }
 
-function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChange }: FiltersProps) {
+function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChange, onClearGenres }: FiltersProps) {
+  const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = useState(false);
 
   // The hook's "value" is a reveal amount (0 = closed, travelPx() = fully
@@ -56,31 +64,41 @@ function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChang
     <nav
       className={isOpen ? "open" : undefined}
       style={dragStyle}
-      onPointerDown={drawer.onPointerDown}
+      onPointerDown={(e) => {
+        // Large screens toggle via the handle only, no dragging
+        if (window.matchMedia(LARGE_SCREEN_QUERY).matches) {
+          return;
+        }
+        drawer.onPointerDown(e);
+      }}
       onPointerMove={drawer.onPointerMove}
       onPointerUp={drawer.onPointerUp}
       onPointerCancel={drawer.onPointerUp}
     >
-      {!isOpen && (
-        <div
-          className="open-handle"
-          role="button"
-          tabIndex={0}
-          aria-label="Open filters"
-          onClick={() => setIsOpen(true)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setIsOpen(true);
-            }
-          }}
-        />
+      <div
+        className="open-handle"
+        role="button"
+        tabIndex={0}
+        aria-label={isOpen ? "Close filters" : "Open filters"}
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+        }}
+      >
+        <span className="open-chevron" />
+      </div>
+      {!isLargeScreen && (
+        <TierFilter tierGroup={tierGroup} setTierGroup={onTierChange} />
       )}
-      <TierFilter tierGroup={tierGroup} setTierGroup={onTierChange} />
       <GenreFilter
         genres={genres}
         selectedGenres={selectedGenres}
         onGenreChange={onGenreChange}
+        onClearGenres={onClearGenres}
       />
     </nav>
   );

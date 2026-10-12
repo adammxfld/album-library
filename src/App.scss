@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+  main {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+    height: calc(100svh - (var(--nav-height) + 0.25em));
+    padding-block: var(--nav-height) 0.25em;
+  }
+}
