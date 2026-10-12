@@ -2,7 +2,11 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 
-const filePath = path.resolve("src/albums_data-small.ts");
+const filePath = path.resolve("src/albums_data.ts");
+
+// Spotify usually returns 640, 300 and 64px album art; imageSmall takes the
+// smallest one at least this wide.
+const SMALL_IMAGE_MIN_WIDTH = 64;
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
@@ -88,6 +92,22 @@ async function getSpotifyArtist(
   return data;
 }
 
+// Pick the smallest image at least SMALL_IMAGE_MIN_WIDTH wide, falling back
+// to the smallest available.
+function getSmallImageUrl(
+  images: { url: string; width: number | null }[] = []
+) {
+  const bySize = [...images].sort(
+    (a, b) => (a.width ?? 0) - (b.width ?? 0)
+  );
+
+  const image =
+    bySize.find((img) => (img.width ?? 0) >= SMALL_IMAGE_MIN_WIDTH) ??
+    bySize[0];
+
+  return image?.url;
+}
+
 async function main() {
   const token = await getToken();
 
@@ -125,8 +145,17 @@ async function main() {
       !/image:\s*/.test(albumObject) ||
       /image:\s*null/.test(albumObject);
 
+    const needsImageSmall =
+      !/imageSmall:\s*/.test(albumObject) ||
+      /imageSmall:\s*null/.test(albumObject);
+
     // Skip Spotify entirely if this album already has everything.
-    if (!needsSpotifyGenre && !needsSpotifyUrl && !needsImage) {
+    if (
+      !needsSpotifyGenre &&
+      !needsSpotifyUrl &&
+      !needsImage &&
+      !needsImageSmall
+    ) {
       console.log(`Skipping: ${artist} - ${title}`);
       continue;
     }
@@ -188,6 +217,28 @@ async function main() {
       }
     }
 
+    // Populate imageSmall if needed.
+    if (needsImageSmall) {
+      const imageSmall =
+        getSmallImageUrl(spotifyAlbum.images);
+
+      if (imageSmall) {
+        if (/imageSmall:\s*null/.test(albumObject)) {
+          albumObject = albumObject.replace(
+            /imageSmall:\s*null/,
+            `imageSmall: "${imageSmall}"`
+          );
+        } else {
+          albumObject = albumObject.replace(
+            /\n\s*\},?$/,
+            `\n    imageSmall: "${imageSmall}",\n  },`
+          );
+        }
+
+        console.log("  Added imageSmall");
+      }
+    }
+
     // Populate spotifyGenre if needed.
     if (needsSpotifyGenre) {
       const artistId =
@@ -232,7 +283,7 @@ async function main() {
 
   fs.writeFileSync(filePath, file);
 
-  console.log("Done. albums_data-small.ts updated.");
+  console.log("Done. albums_data.ts updated.");
 }
 
 main();

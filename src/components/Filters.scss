@@ -24,6 +24,21 @@ nav {
         width: 95vw;
         max-width: 500px;
     }
+
+
+    &.open {
+        --nav-offset: 0;
+    }
+}
+
+.open-handle {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    height: 4.5vh;
+    z-index: 14;
+    cursor: pointer;
+
     &::before {
         content: "";
         position: absolute;
@@ -37,22 +52,7 @@ nav {
         overflow: visible;
         width: 3em;
         z-index: 15;
-    }
-
-    .open-handle {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        max-width: none;
-        margin-inline: 0;
-        height: 4.5vh;
-        z-index: 14;
-        cursor: pointer;
-    }
-
-    &.open {
-        --nav-offset: 0;
+        pointer-events: none;
     }
 }
 
@@ -62,15 +62,72 @@ nav {
     }
 }
 
+// Filters at bottom
+// @media (min-width: 768px) {
+//     nav {
+//         --nav-offset: 30vh;
+//         height: 45vh;
+
+//         div, 
+//         form {
+//             width: 85vw;
+//             max-width: unset;
+//         }
+//     }
+//     .open-handle::before {
+//         content: none;
+//     }
+
+//     .open-chevron {
+//         position: absolute;
+//         top: 0.55em;
+//         left: 50%;
+//         transform: translateX(-50%);
+//         display: block;
+//         width: 4em;
+//         height: 0.5em;
+//     }
+
+//     .open-chevron::before,
+//     .open-chevron::after {
+//         content: "";
+//         position: absolute;
+//         top: 50%;
+//         width: 52%;
+//         height: 3px;
+//         background: currentColor;
+//         border-radius: 3px;
+//         transition: transform var(--nav-transition-duration) ease;
+//     }
+
+//     .open-chevron::before {
+//         left: 0;
+//         transform: rotate(-20deg);
+//     }
+
+//     .open-chevron::after {
+//         right: 0;
+//         transform: rotate(20deg);
+//     }
+
+//     nav.open .open-chevron::before {
+//         transform: rotate(20deg);
+//     }
+
+//     nav.open .open-chevron::after {
+//         transform: rotate(-20deg);
+//     }
+// }
+
+// Filters on right
 @media (min-width: 768px) {
     nav {
+        position: relative;
         pointer-events: none;
-        left: unset;
-        right: 0;
         overflow: visible;
         --nav-transition-duration: 0;
         --nav-offset: 0;
-        height: calc(90vh - 0.75em);
+        height: auto;
         width: 17vw;
         padding-right: 1vw;
         border: none;
@@ -86,16 +143,73 @@ nav {
             display: none;
         }
     }
-    #tier-filter,
-    #genre-filter {
-        margin-inline: 1em;
-        width: auto;
-        pointer-events: auto;
-    }
 }
 
+
+@media (min-width: 768px) {
+    .tier-filter,
+    nav {
+        width: 17vw;
+        pointer-events: auto;
+    }
+    nav .genre-filter {
+        width: auto;
+    }
+}
 @media (min-width: 828px) {
+    .tier-filter,
     nav {
         width: clamp(140.76px, calc(-213.677px + 42.8065vw), 300px);
     }
 }
+
+
+// Filters at top
+// @media (min-width: 768px) {
+//     nav {
+//         --nav-transition-duration: 0;
+//         --nav-offset: 0;
+//         pointer-events: none;
+//         top: 8em;
+//         height: 15em;
+//         overflow: visible;
+//         width: 100%;
+//         border: none;
+//         box-shadow: none;
+//         display: flex;
+//         flex-direction: row;
+//         background-color: unset;
+//         font-size: 14px;
+//         &::before {
+//             content: unset;
+//         }
+//         .open-handle {
+//             display: none;
+//         }
+//     }
+
+//     .tier-filter,
+//     .genre-filter {
+//         pointer-events: auto;
+//         margin: 0;
+//     }
+
+//     .tier-filter {
+//         min-width: 10em;
+//         max-width: 15em;
+//     }
+
+//     .genre-filter {
+//         width: auto;
+//         max-width: none;    
+//         flex: 1 1 60%;
+//         height: 12em;
+//     }
+//     label {
+//         flex: auto;
+//         display: inline-block;
+//         min-width: 4em;
+//         max-width: 13em;
+//         align-content: center;
+//     }
+// }

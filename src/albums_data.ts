@@ -9,6 +9,7 @@ export interface Album {
   tier: number;
   year: number;
   image: string | null;
+  imageSmall?: string | null;
   themeColor: string | null;
   spotifyUrl: string | null;
   spotifySearchUrl: string;
@@ -26,6 +27,7 @@ export const albums: Album[] = [
     themeColor: "#947362",
     spotifyUrl: "https://open.spotify.com/album/2F7xZ22zn1KZRlM4v6M9de",
     spotifySearchUrl: "https://open.spotify.com/search/DJ%20Screw%203%20%E2%80%98n%20the%20Mornin%E2%80%99%20%28Part%20Two%29/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048519eb2a8269dc80e945f24dcea",
   },
   {
     artist: "De La Soul",
@@ -38,6 +40,7 @@ export const albums: Album[] = [
     themeColor: "#8d4748",
     spotifyUrl: "https://open.spotify.com/album/34LxHI9x14qXUOS8AWRrYD",
     spotifySearchUrl: "https://open.spotify.com/search/De%20La%20Soul%203%20Feet%20High%20and%20Rising/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485143693c2f01ae89613c880ed5",
   },
   {
     artist: "School of Language",
@@ -50,6 +53,7 @@ export const albums: Album[] = [
     themeColor: "#b45487",
     spotifyUrl: "https://open.spotify.com/album/6W7LltPAHUG2k8zjyIGcaK",
     spotifySearchUrl: "https://open.spotify.com/search/School%20of%20Language%2045/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485180feb115bd7a4fb704773299",
   },
   {
     artist: "Ice Cube",
@@ -62,6 +66,7 @@ export const albums: Album[] = [
     themeColor: "#997459",
     spotifyUrl: "https://open.spotify.com/album/3AI5kAUjgNtZBwFRi6opDc",
     spotifySearchUrl: "https://open.spotify.com/search/Ice%20Cube%20AmeriKKKa%E2%80%99s%20Most%20Wanted/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048517579fb3388d72153c49375e9",
   },
   {
     artist: "Faith No More",
@@ -74,6 +79,7 @@ export const albums: Album[] = [
     themeColor: "#8c645c",
     spotifyUrl: "https://open.spotify.com/album/59GwovfBk0Kp2HJw1G7E5Q",
     spotifySearchUrl: "https://open.spotify.com/search/Faith%20No%20More%20Angel%20Dust/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048513fc240b0c09f7ffcba4bc3fc",
   },
   {
     artist: "Open Mike Eagle",
@@ -86,6 +92,7 @@ export const albums: Album[] = [
     themeColor: "#a96281",
     spotifyUrl: "https://open.spotify.com/album/23SV7P5U8oF3EJfkdW08wO",
     spotifySearchUrl: "https://open.spotify.com/search/Open%20Mike%20Eagle%20Anime%2C%20Trauma%20and%20Divorce/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048514c1866274fc4aadebb51e769",
   },
   {
     artist: "Wolf Parade",
@@ -98,6 +105,7 @@ export const albums: Album[] = [
     themeColor: "#836f88",
     spotifyUrl: "https://open.spotify.com/album/6ZeO3WNF2Gti8ZQnXog5SQ",
     spotifySearchUrl: "https://open.spotify.com/search/Wolf%20Parade%20Apologies%20to%20the%20Queen%20Mary/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048513674bf46d2590883b6adf1f8",
   },
   {
     artist: "OutKast",
@@ -110,6 +118,7 @@ export const albums: Album[] = [
     themeColor: "#7e6958",
     spotifyUrl: "https://open.spotify.com/album/5ceB3rxgXqIRpsOvVzTG28",
     spotifySearchUrl: "https://open.spotify.com/search/OutKast%20Aquemini/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e2352cc20602d45e9a0e7617",
   },
   {
     artist: "Jimi Hendrix",
@@ -122,6 +131,7 @@ export const albums: Album[] = [
     themeColor: "#b18d5c",
     spotifyUrl: "https://open.spotify.com/album/3uFZf8rykoHo7XMIQVYW6r",
     spotifySearchUrl: "https://open.spotify.com/search/Jimi%20Hendrix%20Axis%3A%20Bold%20as%20Love/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485119dcd95d28b63d10164327f2",
   },
   {
     artist: "Peter Cat Recording Co.",
@@ -134,6 +144,7 @@ export const albums: Album[] = [
     themeColor: "#5baa55",
     spotifyUrl: "https://open.spotify.com/album/5RyDQJIkTOl0QMeFZz8UGe",
     spotifySearchUrl: "https://open.spotify.com/search/Peter%20Cat%20Recording%20Co.%20Beta/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048513db57df610057ad23fd54de1",
   },
   {
     artist: "Mink Lungs",
@@ -146,6 +157,7 @@ export const albums: Album[] = [
     themeColor: "#8c6d73",
     spotifyUrl: "https://open.spotify.com/album/6lGrWnT01D1QNmPSCfvz7f",
     spotifySearchUrl: "https://open.spotify.com/search/Mink%20Lungs%20The%20Better%20Button/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485144861859153394299fbfb395",
   },
   {
     artist: "Jay-Z",
@@ -158,6 +170,7 @@ export const albums: Album[] = [
     themeColor: "#847c7e",
     spotifyUrl: "https://open.spotify.com/album/4FWvo9oS4gRgHtAwDwUjiO",
     spotifySearchUrl: "https://open.spotify.com/search/Jay-Z%20The%20Black%20Album/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851c528802c308a1e0e4d9945dd",
   },
   {
     artist: "Kool Keith",
@@ -170,6 +183,7 @@ export const albums: Album[] = [
     themeColor: "#a0a458",
     spotifyUrl: "https://open.spotify.com/album/2Fqis6PUQLk7bcn7wkpn2R",
     spotifySearchUrl: "https://open.spotify.com/search/Kool%20Keith%20Black%20Elvis%2FLost%20in%20Space/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851ff4d169fd8b7438e6cf5bdd9",
   },
   {
     artist: "D'Angelo",
@@ -182,6 +196,7 @@ export const albums: Album[] = [
     themeColor: "#8c848c",
     spotifyUrl: "https://open.spotify.com/album/5Hfbag0SsHxafx1SySFSX6",
     spotifySearchUrl: "https://open.spotify.com/search/D%E2%80%99Angelo%20Black%20Messiah/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f3dcd9c800f6a4c110339ee2",
   },
   {
     artist: "Mos Def",
@@ -194,6 +209,7 @@ export const albums: Album[] = [
     themeColor: "#ad8558",
     spotifyUrl: "https://open.spotify.com/album/5gK2l2LgWY0BA4p9uy27z6",
     spotifySearchUrl: "https://open.spotify.com/search/Mos%20Def%20Black%20on%20Both%20Sides/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485189b56f56323925d57b38944d",
   },
   {
     artist: "Shabazz Palaces",
@@ -206,6 +222,7 @@ export const albums: Album[] = [
     themeColor: "#b4a458",
     spotifyUrl: "https://open.spotify.com/album/2dNexssEWbK7rgh0veTjjz",
     spotifySearchUrl: "https://open.spotify.com/search/Shabazz%20Palaces%20Black%20Up/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851eb1131dabe75ee956adae913",
   },
   {
     artist: "Comets on Fire",
@@ -218,6 +235,7 @@ export const albums: Album[] = [
     themeColor: "#627786",
     spotifyUrl: "https://open.spotify.com/album/2qBVJLaevQJIEhMAJBmCoR",
     spotifySearchUrl: "https://open.spotify.com/search/Comets%20on%20Fire%20Blue%20Cathedral/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048517028afef5c970cc7780beab2",
   },
   {
     artist: "Tom Waits",
@@ -230,6 +248,7 @@ export const albums: Album[] = [
     themeColor: "#7082ad",
     spotifyUrl: "https://open.spotify.com/album/4VNqy9FUAFCvwE6XqrtlOn",
     spotifySearchUrl: "https://open.spotify.com/search/Tom%20Waits%20Bone%20Machine/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048516c1c88bd7c960fdc5cf9efbd",
   },
   {
     artist: "Aceyalone",
@@ -242,6 +261,7 @@ export const albums: Album[] = [
     themeColor: "#ae867f",
     spotifyUrl: "https://open.spotify.com/album/1sSy8CE6VuloSEzaVcMdkY",
     spotifySearchUrl: "https://open.spotify.com/search/Aceyalone%20A%20Book%20of%20Human%20Language/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048516807d35176f3290feecd692b",
   },
   {
     artist: "3rd Bass",
@@ -254,6 +274,7 @@ export const albums: Album[] = [
     themeColor: "#a68259",
     spotifyUrl: "https://open.spotify.com/album/3DdUJUcRBs6ct8omfRb0Pv",
     spotifySearchUrl: "https://open.spotify.com/search/3rd%20Bass%20The%20Cactus%20Album/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048514f617adb0f591953d9034db9",
   },
   {
     artist: "Mr. Bungle",
@@ -266,6 +287,7 @@ export const albums: Album[] = [
     themeColor: "#828181",
     spotifyUrl: "https://open.spotify.com/album/6QAKD1wqCrmkBYw1AsZfEy",
     spotifySearchUrl: "https://open.spotify.com/search/Mr.%20Bungle%20California/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851c383eff4368b19f5f05b3108",
   },
   {
     artist: "Sufjan Stevens",
@@ -278,6 +300,7 @@ export const albums: Album[] = [
     themeColor: "#909280",
     spotifyUrl: "https://open.spotify.com/album/64xtjfsPHNHch0CZ7fPTjS",
     spotifySearchUrl: "https://open.spotify.com/search/Sufjan%20Stevens%20Carrie%20%26%20Lowell/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851820e2ac14772ae3162c6d479",
   },
 // {
 //     artist: "CeeLo Green",
@@ -301,6 +324,7 @@ export const albums: Album[] = [
     themeColor: "#8b8c4a",
     spotifyUrl: "https://open.spotify.com/album/4ZlfKq4gy7qMjlPNfIupvR",
     spotifySearchUrl: "https://open.spotify.com/search/Illogic%20Celestial%20Clockwork/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f07b00e0eba8398843dfe05c",
   },
   {
     artist: "Frank Ocean",
@@ -313,6 +337,7 @@ export const albums: Album[] = [
     themeColor: "#a5a3a4",
     spotifyUrl: "https://open.spotify.com/album/392p3shh2jkxUxY2VHvlH8",
     spotifySearchUrl: "https://open.spotify.com/search/Frank%20Ocean%20Channel%20Orange/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048517aede4855f6d0d738012e2e5",
   },
   {
     artist: "Beastie Boys",
@@ -325,6 +350,7 @@ export const albums: Album[] = [
     themeColor: "#948488",
     spotifyUrl: "https://open.spotify.com/album/7CSP7J60QKIBCqOV64qILq",
     spotifySearchUrl: "https://open.spotify.com/search/Beastie%20Boys%20Check%20Your%20Head/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851d524bd8dd1ea53b9a0e1dd9e",
   },
   {
     artist: "L'Orange & Jeremiah Jae",
@@ -337,6 +363,7 @@ export const albums: Album[] = [
     themeColor: "#867560",
     spotifyUrl: "https://open.spotify.com/album/1iP7bUuYM3sUGJ4C4BTqvL",
     spotifySearchUrl: "https://open.spotify.com/search/L%E2%80%99Orange%20%26%20Jeremiah%20Jae%20Complicate%20Your%20Life%20with%20Violence/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851a7438f2b7812b71f09c382bc",
   },
   {
     artist: "Smart Went Crazy",
@@ -349,6 +376,7 @@ export const albums: Album[] = [
     themeColor: "#aa8857",
     spotifyUrl: "https://open.spotify.com/album/49ZUkpt8XWnIcf3Srcf8kJ",
     spotifySearchUrl: "https://open.spotify.com/search/Smart%20Went%20Crazy%20Con%20Art/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048515e5a4b6925693da64b601267",
   },
   {
     artist: "Mount Eerie",
@@ -361,6 +389,7 @@ export const albums: Album[] = [
     themeColor: "#af7758",
     spotifyUrl: "https://open.spotify.com/album/5p64XgvFREt1P6mC7Xl6XN",
     spotifySearchUrl: "https://open.spotify.com/search/Mount%20Eerie%20A%20Crow%20Looked%20at%20Me/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e9e262c288b2e13e8f81d2ae",
   },
   {
     artist: "Curtis Mayfield",
@@ -373,6 +402,7 @@ export const albums: Album[] = [
     themeColor: "#9f6b52",
     spotifyUrl: "https://open.spotify.com/album/3tgJmEz0R0ZsRSrpwafp4R",
     spotifySearchUrl: "https://open.spotify.com/search/Curtis%20Mayfield%20Curtis/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851775a6bee6c704ec29aec00f4",
   },
   {
     artist: "Bruce Springsteen",
@@ -385,6 +415,7 @@ export const albums: Album[] = [
     themeColor: "#a2795e",
     spotifyUrl: "https://open.spotify.com/album/4KT6G8fj8EEIfsyr75hbgc",
     spotifySearchUrl: "https://open.spotify.com/search/Bruce%20Springsteen%20Darkness%20on%20the%20Edge%20of%20Town/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485194971620d6c7f0805855ae6f",
   },
   {
     artist: "Sonic Youth",
@@ -397,6 +428,7 @@ export const albums: Album[] = [
     themeColor: "#787e59",
     spotifyUrl: "https://open.spotify.com/album/23O4F21GDWiGd33tFN3ZgI",
     spotifySearchUrl: "https://open.spotify.com/search/Sonic%20Youth%20Daydream%20Nation/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485120f51363b9e2cbd207f158ba",
   },
   {
     artist: "Drop Nineteens",
@@ -409,6 +441,7 @@ export const albums: Album[] = [
     themeColor: "#8b5d56",
     spotifyUrl: "https://open.spotify.com/album/0kAlEeID2MPd2JYT3Iwegp",
     spotifySearchUrl: "https://open.spotify.com/search/Drop%20Nineteens%20Delaware/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851327dd408e63cfe266e5186b2",
   },
   {
     artist: "Deltron 3030",
@@ -421,6 +454,7 @@ export const albums: Album[] = [
     themeColor: "#b29150",
     spotifyUrl: "https://open.spotify.com/album/04uhhcjGVCHodMgZjXOlye",
     spotifySearchUrl: "https://open.spotify.com/search/Deltron%203030%20Deltron%203030/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851210c8f856757abec0806209c",
   },
   {
     artist: "The Cure",
@@ -433,6 +467,7 @@ export const albums: Album[] = [
     themeColor: "#847c7e",
     spotifyUrl: "https://open.spotify.com/album/0A13JySVHzBoRZFk2o89Wl",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Cure%20Disintegration/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851641c33269d4aad8c9e77eae5",
   },
   {
     artist: "Cursive",
@@ -445,6 +480,7 @@ export const albums: Album[] = [
     themeColor: "#b67d5d",
     spotifyUrl: "https://open.spotify.com/album/215RKfiHGpOXzOxftk3fqs",
     spotifySearchUrl: "https://open.spotify.com/search/Cursive%20Domestica/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851a34874db44381d61f23318f8",
   },
   {
     artist: "Hum",
@@ -457,6 +493,7 @@ export const albums: Album[] = [
     themeColor: "#696eb7",
     spotifyUrl: "https://open.spotify.com/album/2qoEiffsxqSGmjBoGVWG15",
     spotifySearchUrl: "https://open.spotify.com/search/Hum%20Downward%20Is%20Heavenward/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851d8b8a56e7eb2501765bb945e",
   },
   {
     artist: "Dr. Octagon",
@@ -469,6 +506,7 @@ export const albums: Album[] = [
     themeColor: "#a48167",
     spotifyUrl: "https://open.spotify.com/album/0GAqyZFjgaz6V5ozTS0dfW",
     spotifySearchUrl: "https://open.spotify.com/search/Dr.%20Octagon%20Dr.%20Octagonecologyst/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851290a9d9531e5cfac3d618ec0",
   },
   {
     artist: "Portishead",
@@ -481,6 +519,7 @@ export const albums: Album[] = [
     themeColor: "#4d629d",
     spotifyUrl: "https://open.spotify.com/album/3539EbNgIdEDGBKkUf4wno",
     spotifySearchUrl: "https://open.spotify.com/search/Portishead%20Dummy/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851dc20397b139223620af148f6",
   },
   {
     artist: "Janelle Monáe",
@@ -493,6 +532,7 @@ export const albums: Album[] = [
     themeColor: "#966055",
     spotifyUrl: "https://open.spotify.com/album/3bnHtSmmsgJiG82hGCmsq9",
     spotifySearchUrl: "https://open.spotify.com/search/Janelle%20Mon%C3%A1e%20The%20Electric%20Lady/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485157cc241e3fc4e95eea8c4b20",
   },
   {
     artist: "Wu-Tang Clan",
@@ -505,6 +545,7 @@ export const albums: Album[] = [
     themeColor: "#a25e96",
     spotifyUrl: "https://open.spotify.com/album/3tQd5mwBtVyxCoEo4htGAV",
     spotifySearchUrl: "https://open.spotify.com/search/Wu-Tang%20Clan%20Enter%20the%20Wu-Tang%20%2836%20Chambers%29/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048515901aaa980d3e714bf01171c",
   },
   {
     artist: "Rapsody",
@@ -517,6 +558,7 @@ export const albums: Album[] = [
     themeColor: "#9d7669",
     spotifyUrl: "https://open.spotify.com/album/4W5qCJNSN3oNHB986TdO9S",
     spotifySearchUrl: "https://open.spotify.com/search/Rapsody%20Eve/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851906e040ecc1210c31fe3867c",
   },
   {
     artist: "Donny Hathaway",
@@ -529,6 +571,7 @@ export const albums: Album[] = [
     themeColor: "#a46464",
     spotifyUrl: "https://open.spotify.com/album/7k89fD1BB2xQCibsPtSYyh",
     spotifySearchUrl: "https://open.spotify.com/search/Donny%20Hathaway%20Everything%20Is%20Everything/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851d58852e49908da22a68f1913",
   },
   {
     artist: "Quelle Chris & Jean Grae",
@@ -541,6 +584,7 @@ export const albums: Album[] = [
     themeColor: "#6a81a7",
     spotifyUrl: "https://open.spotify.com/album/1srcxxx90w91avoxt4nhyM",
     spotifySearchUrl: "https://open.spotify.com/search/Quelle%20Chris%20%26%20Jean%20Grae%20Everything%E2%80%99s%20Fine/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485158de68833379d10d2b91a36a",
   },
   {
     artist: "Ghostface Killah",
@@ -553,6 +597,7 @@ export const albums: Album[] = [
     themeColor: "#9c6454",
     spotifyUrl: "https://open.spotify.com/album/0gaLZATMEssSErDzywUqxD",
     spotifySearchUrl: "https://open.spotify.com/search/Ghostface%20Killah%20Fishscale/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851ce87451bd450fc5a177b5156",
   },
   {
     artist: "They Might Be Giants",
@@ -565,6 +610,7 @@ export const albums: Album[] = [
     themeColor: "#6b925b",
     spotifyUrl: "https://open.spotify.com/album/7FwAtuhhWivxvK4aPgyyUD",
     spotifySearchUrl: "https://open.spotify.com/search/They%20Might%20Be%20Giants%20Flood/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e6c14f0dc854e7d3c7c40007",
   },
   {
     artist: "Dead Kennedys",
@@ -577,6 +623,7 @@ export const albums: Album[] = [
     themeColor: "#9c7b6e",
     spotifyUrl: "https://open.spotify.com/album/2Eip0wqFaPzwCslIB0u21W",
     spotifySearchUrl: "https://open.spotify.com/search/Dead%20Kennedys%20Frankenchrist/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851bda3cf1eedcd15cabfa03281",
   },
   {
     artist: "Matthew Sweet",
@@ -589,6 +636,7 @@ export const albums: Album[] = [
     themeColor: "#aa658e",
     spotifyUrl: "https://open.spotify.com/album/6iY6dGWklw6jfVGhEczCiC",
     spotifySearchUrl: "https://open.spotify.com/search/Matthew%20Sweet%20Girlfriend/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851204bc1761264c6406791b137",
   },
   {
     artist: "Paul Simon",
@@ -601,6 +649,7 @@ export const albums: Album[] = [
     themeColor: "#94545c",
     spotifyUrl: "https://open.spotify.com/album/4WoQ94qzwQj28n3nlSOVLB",
     spotifySearchUrl: "https://open.spotify.com/search/Paul%20Simon%20Graceland/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851dd83eef605c1ce2f27722ea1",
   },
   {
     artist: "Rostam",
@@ -613,6 +662,7 @@ export const albums: Album[] = [
     themeColor: "#5c5b9d",
     spotifyUrl: "https://open.spotify.com/album/2eVtqdI1qU02LHrPH72Omq",
     spotifySearchUrl: "https://open.spotify.com/search/Rostam%20Half-Light/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048511dd013b79076d4543a3119b2",
   },
   {
     artist: "Jimmy Cliff",
@@ -625,6 +675,7 @@ export const albums: Album[] = [
     themeColor: "#93726f",
     spotifyUrl: "https://open.spotify.com/album/4oxdKcC9epGo9viy1j8fN7",
     spotifySearchUrl: "https://open.spotify.com/search/Jimmy%20Cliff%20The%20Harder%20They%20Come/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048516033eb0ca150f7d26d897581",
   },
   {
     artist: "The Cure",
@@ -637,6 +688,7 @@ export const albums: Album[] = [
     themeColor: "#5e99aa",
     spotifyUrl: "https://open.spotify.com/album/6HhpmJekzDCRu2K64ZbWqw",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Cure%20The%20Head%20on%20the%20Door/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048511b54add5c2a3a337e512941b",
   },
   {
     artist: "Marvin Gaye",
@@ -649,6 +701,7 @@ export const albums: Album[] = [
     themeColor: "#af9876",
     spotifyUrl: "https://open.spotify.com/album/1iVf41qWHZsAk9DwY43WnV",
     spotifySearchUrl: "https://open.spotify.com/search/Marvin%20Gaye%20Here%2C%20My%20Dear/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851d9e83bbcf06d8d39f0adbb8e",
   },
   {
     artist: "David Bowie",
@@ -661,6 +714,7 @@ export const albums: Album[] = [
     themeColor: "#948372",
     spotifyUrl: "https://open.spotify.com/album/6fQElzBNTiEMGdIeY0hy5l",
     spotifySearchUrl: "https://open.spotify.com/search/David%20Bowie%20Hunky%20Dory/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e464904cc3fed2b40fc55120",
   },
   {
     artist: "Father John Misty",
@@ -673,6 +727,7 @@ export const albums: Album[] = [
     themeColor: "#86ad68",
     spotifyUrl: "https://open.spotify.com/album/4vTEFCLgDEgKIQXTrsmS6F",
     spotifySearchUrl: "https://open.spotify.com/search/Father%20John%20Misty%20I%20Love%20You%2C%20Honeybear/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048512b46da50b2cf64c6744a5e33",
   },
   {
     artist: "Gil Scott-Heron",
@@ -685,6 +740,7 @@ export const albums: Album[] = [
     themeColor: "#579d6c",
     spotifyUrl: "https://open.spotify.com/album/1sSvQANrs9N0qFB1xEwjDd",
     spotifySearchUrl: "https://open.spotify.com/search/Gil%20Scott-Heron%20I%E2%80%99m%20New%20Here/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048512288211a0ec8fc42e8f84f4b",
   },
   {
     artist: "Nas",
@@ -697,6 +753,7 @@ export const albums: Album[] = [
     themeColor: "#a18062",
     spotifyUrl: "https://open.spotify.com/album/3kEtdS2pH6hKcMU9Wioob1",
     spotifySearchUrl: "https://open.spotify.com/search/Nas%20Illmatic/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485171d840defb002ed3b180f7cd",
   },
   {
     artist: "Elvis Costello",
@@ -709,6 +766,7 @@ export const albums: Album[] = [
     themeColor: "#64649c",
     spotifyUrl: "https://open.spotify.com/album/1pK8MLyjgvt8pNVkQCBnSg",
     spotifySearchUrl: "https://open.spotify.com/search/Elvis%20Costello%20Imperial%20Bedroom/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048515041db1a78fe8ed49d917f70",
   },
   {
     artist: "Public Enemy",
@@ -721,6 +779,7 @@ export const albums: Album[] = [
     themeColor: "#61996b",
     spotifyUrl: "https://open.spotify.com/album/3PxXiYU3PjymOEE22PewGZ",
     spotifySearchUrl: "https://open.spotify.com/search/Public%20Enemy%20It%20Takes%20a%20Nation%20of%20Millions%20to%20Hold%20Us%20Back/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851c3cb4969e8a8e9c9d604bf89",
   },
   {
     artist: "The Lemonheads",
@@ -733,6 +792,7 @@ export const albums: Album[] = [
     themeColor: "#5c7c9c",
     spotifyUrl: "https://open.spotify.com/album/4Q8DyYRZ8qbDoTUDJBgE3A",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Lemonheads%20It%E2%80%99s%20a%20Shame%20About%20Ray/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485145251c9ca2c4296acf0e8980",
   },
   {
     artist: "IDLES",
@@ -745,6 +805,7 @@ export const albums: Album[] = [
     themeColor: "#9c7f6a",
     spotifyUrl: "https://open.spotify.com/album/2JLMlrYV74wjlOqgsm2hfX",
     spotifySearchUrl: "https://open.spotify.com/search/IDLES%20Joy%20as%20an%20Act%20of%20Resistance/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f247f4e8334b745fc2dd080f",
   },
   {
     artist: "Bill Withers",
@@ -757,6 +818,7 @@ export const albums: Album[] = [
     themeColor: "#a6865a",
     spotifyUrl: "https://open.spotify.com/album/6N8uPmDqbgXD3ztkCCfxoo",
     spotifySearchUrl: "https://open.spotify.com/search/Bill%20Withers%20Just%20as%20I%20Am/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f64b9ea8a8a409c6af86134f",
   },
   {
     artist: "Bob Marley",
@@ -769,6 +831,7 @@ export const albums: Album[] = [
     themeColor: "#a68472",
     spotifyUrl: "https://open.spotify.com/album/13dXX35pYjr8FqRla40K2a",
     spotifySearchUrl: "https://open.spotify.com/search/Bob%20Marley%20Kaya/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851387799441ba867649dfbb702",
   },
   {
     artist: "Built to Spill",
@@ -781,6 +844,7 @@ export const albums: Album[] = [
     themeColor: "#848c4c",
     spotifyUrl: "https://open.spotify.com/album/2PKZhfPrgMmK5zug2pqdHA",
     spotifySearchUrl: "https://open.spotify.com/search/Built%20to%20Spill%20Keep%20It%20Like%20a%20Secret/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048510c8cece24badfb7bfce2f38d",
   },
   {
     artist: "Aesop Rock",
@@ -793,6 +857,7 @@ export const albums: Album[] = [
     themeColor: "#627493",
     spotifyUrl: "https://open.spotify.com/album/3zJMNOxnbHWG2rZwswnSM2",
     spotifySearchUrl: "https://open.spotify.com/search/Aesop%20Rock%20Labor%20Days/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048514566a46c13a1a8f34c6fd30e",
   },
   {
     artist: "The Replacements",
@@ -805,6 +870,7 @@ export const albums: Album[] = [
     themeColor: "#5b6a8c",
     spotifyUrl: "https://open.spotify.com/album/2sOLW5TSgXiLZBacdHxO6m",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Replacements%20Let%20It%20Be/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851827c73f85e4c50dfdbeef711",
   },
   {
     artist: "Common",
@@ -817,6 +883,7 @@ export const albums: Album[] = [
     themeColor: "#5c7c5c",
     spotifyUrl: "https://open.spotify.com/album/72GMOkq47rXzdAMJrjf4RV",
     spotifySearchUrl: "https://open.spotify.com/search/Common%20Like%20Water%20for%20Chocolate/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048517bf7e051d397970737661d05",
   },
   {
     artist: "GZA",
@@ -829,6 +896,7 @@ export const albums: Album[] = [
     themeColor: "#6798a1",
     spotifyUrl: "https://open.spotify.com/album/3k8xoyOXkGgZxUKgpmxz4P",
     spotifySearchUrl: "https://open.spotify.com/search/GZA%20Liquid%20Swords/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485184b6abc19fb31fb382378bbc",
   },
   {
     artist: "Little Joy",
@@ -841,6 +909,7 @@ export const albums: Album[] = [
     themeColor: "#8b7965",
     spotifyUrl: "https://open.spotify.com/album/2SctzR3lb5YN3EJzTf9Kbs",
     spotifySearchUrl: "https://open.spotify.com/search/Little%20Joy%20Little%20Joy",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485131bc31348b8e264ba8bacb55",
   },
   {
     artist: "The Clash",
@@ -853,18 +922,7 @@ export const albums: Album[] = [
     themeColor: "#9b6061",
     spotifyUrl: "https://open.spotify.com/album/6FCzvataOZh68j8OKzOt9a",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Clash%20London%20Calling/albums",
-  },
-  {
-    artist: "Masta Ace",
-    title: "A Long Hot Summer",
-    genre: "rap",
-    genres: ["rap"],
-    tier: 2,
-    year: 2004,
-    image: "https://i.scdn.co/image/ab67616d0000b2738b13da17b2d5f5d85f8bd05f",
-    themeColor: "#a97d53",
-    spotifyUrl: "https://open.spotify.com/album/7qvw3MPdulHThAPqaM9ynF",
-    spotifySearchUrl: "https://open.spotify.com/search/Masta%20Ace%20A%20Long%20Hot%20Summer/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851628103d0e62602f00408345d",
   },
   {
     artist: "The Cult",
@@ -877,6 +935,7 @@ export const albums: Album[] = [
     themeColor: "#7c8184",
     spotifyUrl: "https://open.spotify.com/album/2hallpchkYldMa5lGGf1Ko",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Cult%20Love/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048515c5dbd89210073351c9a6fdd",
   },
   {
     artist: "Sade",
@@ -889,6 +948,7 @@ export const albums: Album[] = [
     themeColor: "#8c8474",
     spotifyUrl: "https://open.spotify.com/album/2PfGKHtqEX58bHtkQxJnWG",
     spotifySearchUrl: "https://open.spotify.com/search/Sade%20Love%20Deluxe/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851ee65bbd54f993b5f01d5c511",
   },
   {
     artist: "A Tribe Called Quest",
@@ -901,6 +961,7 @@ export const albums: Album[] = [
     themeColor: "#5ca850",
     spotifyUrl: "https://open.spotify.com/album/1p12OAWwudgMqfMzjMvl2a",
     spotifySearchUrl: "https://open.spotify.com/search/A%20Tribe%20Called%20Quest%20The%20Low%20End%20Theory/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f38c6b37a21334e22005b1f7",
   },
   {
     artist: "Madvillain",
@@ -913,6 +974,7 @@ export const albums: Album[] = [
     themeColor: "#838383",
     spotifyUrl: "https://open.spotify.com/album/19bQiwEKhXUBJWY6oV3KZk",
     spotifySearchUrl: "https://open.spotify.com/search/Madvillain%20Madvillainy/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048513e3bb917af94bd82074c5d47",
   },
   {
     artist: "Anderson .Paak",
@@ -925,6 +987,7 @@ export const albums: Album[] = [
     themeColor: "#99785f",
     spotifyUrl: "https://open.spotify.com/album/73uicPCTt24cmTc9bVaOIp",
     spotifySearchUrl: "https://open.spotify.com/search/Anderson%20.Paak%20Malibu/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485106783b3e6d4bbf4487045534",
   },
   {
     artist: "Lauryn Hill",
@@ -937,6 +1000,7 @@ export const albums: Album[] = [
     themeColor: "#a96a54",
     spotifyUrl: "https://open.spotify.com/album/1BZoqf8Zje5nGdwZhOjAtD",
     spotifySearchUrl: "https://open.spotify.com/search/Lauryn%20Hill%20The%20Miseducation%20of%20Lauryn%20Hill/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e08b1250db5f75643f1508c9",
   },
   {
     artist: "The Modern Lovers",
@@ -949,6 +1013,7 @@ export const albums: Album[] = [
     themeColor: "#6c8494",
     spotifyUrl: "https://open.spotify.com/album/7ro1W6lc4tuTaRyA8rnVm1",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Modern%20Lovers%20The%20Modern%20Lovers/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851b44ebe6e50148bca8bce584d",
   },
   {
     artist: "Titus Andronicus",
@@ -961,6 +1026,7 @@ export const albums: Album[] = [
     themeColor: "#70839b",
     spotifyUrl: "https://open.spotify.com/album/4U9WLOC31iDcQ4gg5yUUEp",
     spotifySearchUrl: "https://open.spotify.com/search/Titus%20Andronicus%20The%20Monitor/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851ab97093eb78818bed2d76c9e",
   },
   {
     artist: "Black Star",
@@ -973,6 +1039,7 @@ export const albums: Album[] = [
     themeColor: "#8b5f51",
     spotifyUrl: "https://open.spotify.com/album/6GRzmk9UGL7odxprOPop1Q",
     spotifySearchUrl: "https://open.spotify.com/search/Black%20Star%20Mos%20Def%20%26%20Talib%20Kweli%20Are%20Black%20Star",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e3f907e70bc502a263ee1bc0",
   },
   {
     artist: "Mr. Bungle",
@@ -985,6 +1052,7 @@ export const albums: Album[] = [
     themeColor: "#5a84a5",
     spotifyUrl: "https://open.spotify.com/album/5TzQq2irJPHeHNnh11atPw",
     spotifySearchUrl: "https://open.spotify.com/search/Mr.%20Bungle%20Mr.%20Bungle/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485189f967ebf920ec2f6ac538fe",
   },
   {
     artist: "Phosphorescent",
@@ -997,6 +1065,7 @@ export const albums: Album[] = [
     themeColor: "#9c944b",
     spotifyUrl: "https://open.spotify.com/album/6rAJ4I8SpPMJj0guCZiAI8",
     spotifySearchUrl: "https://open.spotify.com/search/Phosphorescent%20Muchacho/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485127c2bc06b63bc49270ec6617",
   },
   {
     artist: "Lovage",
@@ -1009,6 +1078,7 @@ export const albums: Album[] = [
     themeColor: "#8c64ac",
     spotifyUrl: "https://open.spotify.com/album/3QFwPfYolMmXNNdOrRLLGE",
     spotifySearchUrl: "https://open.spotify.com/search/Lovage%20Music%20to%20Make%20Love%20to%20Your%20Old%20Lady%20By/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851a2c2760637667c3ae5ee505a",
   },
   {
     artist: "Lou Reed",
@@ -1021,6 +1091,7 @@ export const albums: Album[] = [
     themeColor: "#838c7c",
     spotifyUrl: "https://open.spotify.com/album/7xGqf9DddW89cg7m6zX88t",
     spotifySearchUrl: "https://open.spotify.com/search/Lou%20Reed%20New%20York/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048516386bf63d1326306c9b168ef",
   },
   {
     artist: "Bad Religion",
@@ -1033,6 +1104,7 @@ export const albums: Album[] = [
     themeColor: "#5ba84f",
     spotifyUrl: "https://open.spotify.com/album/3efgo1fUo21py17Z7jGsle",
     spotifySearchUrl: "https://open.spotify.com/search/Bad%20Religion%20No%20Control/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e78b00ce2d5f0f7f437e61a0",
   },
   {
     artist: "Jane's Addiction",
@@ -1045,6 +1117,7 @@ export const albums: Album[] = [
     themeColor: "#888d92",
     spotifyUrl: "https://open.spotify.com/album/4DVBJPJyizvHfJQt5pYaCa",
     spotifySearchUrl: "https://open.spotify.com/search/Jane%E2%80%99s%20Addiction%20Nothing%E2%80%99s%20Shocking/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048516253200d8b0f566f252fc3c4",
   },
   {
     artist: "Beck",
@@ -1057,6 +1130,7 @@ export const albums: Album[] = [
     themeColor: "#a7aa7b",
     spotifyUrl: "https://open.spotify.com/album/1Pus5h1qGedCn4CtOuPVtp",
     spotifySearchUrl: "https://open.spotify.com/search/Beck%20Odelay/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048513eedff0a0202da69fe1078de",
   },
   {
     artist: "Galaxie 500",
@@ -1069,6 +1143,7 @@ export const albums: Album[] = [
     themeColor: "#914607",
     spotifyUrl: "https://open.spotify.com/album/1qhNLXBmt1EW6Kwt2A3u8M",
     spotifySearchUrl: "https://open.spotify.com/search/Galaxie%20500%20On%20Fire/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048516610d5c08e5b809ffb19b6d9",
   },
   {
     artist: "Beastie Boys",
@@ -1081,6 +1156,7 @@ export const albums: Album[] = [
     themeColor: "#a57664",
     spotifyUrl: "https://open.spotify.com/album/1kmyirVya5fRxdjsPFDM05",
     spotifySearchUrl: "https://open.spotify.com/search/Beastie%20Boys%20Paul%E2%80%99s%20Boutique/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048512288f4cd4bf3a8764624a0d2",
   },
   {
     artist: "Peter Gabriel",
@@ -1093,6 +1169,7 @@ export const albums: Album[] = [
     themeColor: "#808080",
     spotifyUrl: "https://open.spotify.com/album/0LF0vWmmKRVPXoikpNkO5W",
     spotifySearchUrl: "https://open.spotify.com/search/Peter%20Gabriel%20Peter%20Gabriel%203%20%28Melt%29/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f7d5c1fa08ee13ba38ff0385",
   },
   {
     artist: "The Beach Boys",
@@ -1105,6 +1182,7 @@ export const albums: Album[] = [
     themeColor: "#5ba84f",
     spotifyUrl: "https://open.spotify.com/album/2CNEkSE8TADXRT2AzcEt1b",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Beach%20Boys%20Pet%20Sounds",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485150eb0c521d2d3b2f599bff04",
   },
   {
     artist: "Weezer",
@@ -1117,6 +1195,7 @@ export const albums: Album[] = [
     themeColor: "#8f7b61",
     spotifyUrl: "https://open.spotify.com/album/3jWhmYMAWw5NvHTTeiQtfl",
     spotifySearchUrl: "https://open.spotify.com/search/Weezer%20Pinkerton/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f4f9accdc0fb8ddee29e32b7",
   },
   {
     artist: "The Deadly Snakes",
@@ -1129,6 +1208,7 @@ export const albums: Album[] = [
     themeColor: "#a95652",
     spotifyUrl: "https://open.spotify.com/album/7hO0aWOC9S6q4nCwxB47LT",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Deadly%20Snakes%20Porcella/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851bd5bbf186c7e21e477424a98",
   },
   {
     artist: "Björk",
@@ -1141,6 +1221,7 @@ export const albums: Album[] = [
     themeColor: "#bb6d98",
     spotifyUrl: "https://open.spotify.com/album/2Ul7B1LEHxXzYubtkTMENs",
     spotifySearchUrl: "https://open.spotify.com/search/Bj%C3%B6rk%20Post/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851a865a9acd0169c7a014063b0",
   },
   {
     artist: "Prince Paul",
@@ -1153,6 +1234,7 @@ export const albums: Album[] = [
     themeColor: "#a38973",
     spotifyUrl: "https://open.spotify.com/album/4fyM6KHHFxkVDYqJA5k2nR",
     spotifySearchUrl: "https://open.spotify.com/search/Prince%20Paul%20A%20Prince%20Among%20Thieves/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048515dab4c507f3a1b5230f04e33",
   },
   {
     artist: "NOFX",
@@ -1165,6 +1247,7 @@ export const albums: Album[] = [
     themeColor: "#b0534c",
     spotifyUrl: "https://open.spotify.com/album/6Z8BYH27wINoUk4QMUx7gh",
     spotifySearchUrl: "https://open.spotify.com/search/NOFX%20Punk%20in%20Drublic/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851b00c510f182b92234ca2b93d",
   },
   {
     artist: "Ween",
@@ -1177,6 +1260,7 @@ export const albums: Album[] = [
     themeColor: "#9c9060",
     spotifyUrl: "https://open.spotify.com/album/0okI8dhuTA9ZoQ4bS2UO8a",
     spotifySearchUrl: "https://open.spotify.com/search/Ween%20Pure%20Guava/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048519fd1460066ce6a419550085f",
   },
   {
     artist: "Prince",
@@ -1189,6 +1273,7 @@ export const albums: Album[] = [
     themeColor: "#7566a2",
     spotifyUrl: "https://open.spotify.com/album/2umoqwMrmjBBPeaqgYu6J9",
     spotifySearchUrl: "https://open.spotify.com/search/Prince%20Purple%20Rain/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048518a2ce3f148f57584269c3782",
   },
   {
     artist: "Digable Planets",
@@ -1201,6 +1286,7 @@ export const albums: Album[] = [
     themeColor: "#558f9f",
     spotifyUrl: "https://open.spotify.com/album/5snUbps5KleLIP0cVI72lP",
     spotifySearchUrl: "https://open.spotify.com/search/Digable%20Planets%20Reachin%E2%80%99%20%28A%20New%20Refutation%20of%20Time%20and%20Space%29/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851c9f6a742f2337f938e89f599",
   },
   {
     artist: "Fugazi",
@@ -1213,6 +1299,7 @@ export const albums: Album[] = [
     themeColor: "#6c748c",
     spotifyUrl: "https://open.spotify.com/album/6JbGZGta38AArBgflt024C",
     spotifySearchUrl: "https://open.spotify.com/search/Fugazi%20Repeater/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485145d8eaebe1528abd4d9895cf",
   },
   {
     artist: "Super Furry Animals",
@@ -1225,6 +1312,7 @@ export const albums: Album[] = [
     themeColor: "#5c9e7c",
     spotifyUrl: "https://open.spotify.com/album/5Xy39Du8ulIkrteixi81cP",
     spotifySearchUrl: "https://open.spotify.com/search/Super%20Furry%20Animals%20Rings%20Around%20the%20World/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851a0b69e88dfda91a089177133",
   },
   {
     artist: "David Bowie",
@@ -1237,6 +1325,7 @@ export const albums: Album[] = [
     themeColor: "#ab944c",
     spotifyUrl: "https://open.spotify.com/album/48D1hRORqJq52qsnUYZX56",
     spotifySearchUrl: "https://open.spotify.com/search/David%20Bowie%20The%20Rise%20and%20Fall%20of%20Ziggy%20Stardust%20and%20the%20Spiders%20from%20Mars/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851c41f4e1133b0e6c5fcf58680",
   },
   {
     artist: "The Clash",
@@ -1249,6 +1338,7 @@ export const albums: Album[] = [
     themeColor: "#a85c5c",
     spotifyUrl: "https://open.spotify.com/album/2UxN3UKyS3Z5r0Sra8A5RF",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Clash%20Sandinista%21/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485112ca1cd8c311b02dd1d2b144",
   },
   {
     artist: "The Beatles",
@@ -1261,6 +1351,7 @@ export const albums: Album[] = [
     themeColor: "#955e4b",
     spotifyUrl: "https://open.spotify.com/album/6b7ycwe2rxq6FkaupNuGoS",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Beatles%20Sgt.%20Pepper%E2%80%99s%20Lonely%20Hearts%20Club%20Band/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485134ef8f7d06cf2fc2146f420a",
   },
   {
     artist: "Bambara",
@@ -1273,6 +1364,7 @@ export const albums: Album[] = [
     themeColor: "#6d322b",
     spotifyUrl: "https://open.spotify.com/album/391yau37chdg7keXi8tOZ0",
     spotifySearchUrl: "https://open.spotify.com/search/Bambara%20Shadow%20on%20Everything/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851faa9881e87903a9da6ebca81",
   },
   {
     artist: "Prince",
@@ -1285,6 +1377,7 @@ export const albums: Album[] = [
     themeColor: "#9da56b",
     spotifyUrl: "https://open.spotify.com/album/2QuHyvguNhl5kfdoE17RRe",
     spotifySearchUrl: "https://open.spotify.com/search/Prince%20Sign%20o%E2%80%99%20the%20Times/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851f4201fb1469762761c6f16ee",
   },
   {
     artist: "Masta Ace Incorporated",
@@ -1297,6 +1390,7 @@ export const albums: Album[] = [
     themeColor: "#818484",
     spotifyUrl: "https://open.spotify.com/album/27RIMpqEf23c22F1AIp5pl",
     spotifySearchUrl: "https://open.spotify.com/search/Masta%20Ace%20Incorporated%20SlaughtaHouse/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851ae4d1fd56032dcb135976bd3",
   },
   {
     artist: "Handsome Boy Modeling School",
@@ -1309,6 +1403,7 @@ export const albums: Album[] = [
     themeColor: "#a07a5c",
     spotifyUrl: "https://open.spotify.com/album/11xrdpHkh2KUuxPGEfQZKG",
     spotifySearchUrl: "https://open.spotify.com/search/Handsome%20Boy%20Modeling%20School%20So%E2%80%A6%20How%E2%80%99s%20Your%20Girl%3F/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851952f4da94c8d41b100570f49",
   },
   {
     artist: "The Flaming Lips",
@@ -1321,6 +1416,7 @@ export const albums: Album[] = [
     themeColor: "#5076ad",
     spotifyUrl: "https://open.spotify.com/album/1mJFgPeuLhU1PzLNBURdJC",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Flaming%20Lips%20The%20Soft%20Bulletin/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851a777ab30c4bfc17ea58ce019",
   },
   {
     artist: "Stevie Wonder",
@@ -1333,6 +1429,7 @@ export const albums: Album[] = [
     themeColor: "#a0884f",
     spotifyUrl: "https://open.spotify.com/album/6YUCc2RiXcEKS9ibuZxjt0",
     spotifySearchUrl: "https://open.spotify.com/search/Stevie%20Wonder%20Songs%20in%20the%20Key%20of%20Life/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048512fee61bfec596bb6f5447c50",
   },
   {
     artist: "The Stone Roses",
@@ -1345,6 +1442,7 @@ export const albums: Album[] = [
     themeColor: "#5e9a59",
     spotifyUrl: "https://open.spotify.com/album/0um9FI6BLBldL5POP4D4Cw",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Stone%20Roses%20The%20Stone%20Roses/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851cf1f6466a493eb73d6d9d280",
   },
   {
     artist: "Tunde Olaniran",
@@ -1357,6 +1455,7 @@ export const albums: Album[] = [
     themeColor: "#b08252",
     spotifyUrl: "https://open.spotify.com/album/6rseMoZK2XpakCg5h6ML13",
     spotifySearchUrl: "https://open.spotify.com/search/Tunde%20Olaniran%20Stranger/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851704f749d857b13ae7e5f5193",
   },
   {
     artist: "Wilco",
@@ -1369,6 +1468,7 @@ export const albums: Album[] = [
     themeColor: "#5c869c",
     spotifyUrl: "https://open.spotify.com/album/1JpaFJzzcsiulO6MdIcQdK",
     spotifySearchUrl: "https://open.spotify.com/search/Wilco%20Summerteeth/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048511e129eb9e8f65e52f372bee7",
   },
   {
     artist: "Noname",
@@ -1381,6 +1481,7 @@ export const albums: Album[] = [
     themeColor: "#508d53",
     spotifyUrl: "https://open.spotify.com/album/5kjqLxeQxdW3CcUdOXuO2c",
     spotifySearchUrl: "https://open.spotify.com/search/Noname%20Telefone/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851d684ea63f359ff9a83c10bc8",
   },
   {
     artist: "The Roots",
@@ -1393,6 +1494,7 @@ export const albums: Album[] = [
     themeColor: "#777575",
     spotifyUrl: "https://open.spotify.com/album/0qbl8aNaCUOvX8HGsZYLfh",
     spotifySearchUrl: "https://open.spotify.com/search/The%20Roots%20Things%20Fall%20Apart/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851bac8015c7e47644fb86e27e2",
   },
   {
     artist: "Lambchop",
@@ -1405,6 +1507,7 @@ export const albums: Album[] = [
     themeColor: "#9b7a68",
     spotifyUrl: "https://open.spotify.com/album/6ZgZT7rQ64em93VAvk6mby",
     spotifySearchUrl: "https://open.spotify.com/search/Lambchop%20This%20%28Is%20What%20I%20Wanted%20to%20Tell%20You%29/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851e4e8e30d0b2a9a59313b5c26",
   },
   {
     artist: "Kendrick Lamar",
@@ -1417,6 +1520,7 @@ export const albums: Album[] = [
     themeColor: "#787676",
     spotifyUrl: "https://open.spotify.com/album/7ycBtnsMtyVbbwTfJwRjSP",
     spotifySearchUrl: "https://open.spotify.com/search/Kendrick%20Lamar%20To%20Pimp%20a%20Butterfly/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851cdb645498cd3d8a2db4d05e1",
   },
   {
     artist: "Van Halen",
@@ -1429,6 +1533,7 @@ export const albums: Album[] = [
     themeColor: "#a86b55",
     spotifyUrl: "https://open.spotify.com/album/7DdEbYFPKTZ8KB4z6L4UnQ",
     spotifySearchUrl: "https://open.spotify.com/search/Van%20Halen%20Van%20Halen/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485117dd812df38fed44d6d2036e",
   },
   {
     artist: "Violent Femmes",
@@ -1441,6 +1546,7 @@ export const albums: Album[] = [
     themeColor: "#ac745c",
     spotifyUrl: "https://open.spotify.com/album/0Ojio25IPzIrw1rUmgrhrG",
     spotifySearchUrl: "https://open.spotify.com/search/Violent%20Femmes%20Violent%20Femmes/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d0000485154096a7f898de0233d76f626",
   },
   {
     artist: "D'Angelo",
@@ -1453,6 +1559,7 @@ export const albums: Album[] = [
     themeColor: "#ac5858",
     spotifyUrl: "https://open.spotify.com/album/2lO9yuuIDgBpSJzxTh3ai8",
     spotifySearchUrl: "https://open.spotify.com/search/D%E2%80%99Angelo%20Voodoo/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048512b3dc336a7a69293c25d9ade",
   },
   {
     artist: "U2",
@@ -1465,6 +1572,7 @@ export const albums: Album[] = [
     themeColor: "#848484",
     spotifyUrl: "https://open.spotify.com/album/6GaqU0TlYBKHUiSJ0AT9A2",
     spotifySearchUrl: "https://open.spotify.com/search/U2%20War/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851673526fcf35ab235e1a9d94c",
   },
   {
     artist: "Tierra Whack",
@@ -1477,6 +1585,7 @@ export const albums: Album[] = [
     themeColor: "#a05894",
     spotifyUrl: "https://open.spotify.com/album/3ogNAkUhvQy0cFOfLoR6Y8",
     spotifySearchUrl: "https://open.spotify.com/search/Tierra%20Whack%20Whack%20World/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851fb22c7162d3867dc3c2af466",
   },
   {
     artist: "Marvin Gaye",
@@ -1489,6 +1598,7 @@ export const albums: Album[] = [
     themeColor: "#ad8460",
     spotifyUrl: "https://open.spotify.com/album/2v6ANhWhZBUKkg6pJJBs3B",
     spotifySearchUrl: "https://open.spotify.com/search/Marvin%20Gaye%20What%E2%80%99s%20Going%20On/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851b36949bee43217351961ffbc",
   },
   {
     artist: "Gil Scott-Heron",
@@ -1501,6 +1611,7 @@ export const albums: Album[] = [
     themeColor: "#957b5d",
     spotifyUrl: "https://open.spotify.com/album/2wg5odL4oUsDISjIuNApyK",
     spotifySearchUrl: "https://open.spotify.com/search/Gil%20Scott-Heron%20Winter%20in%20America/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851910382524ae45b2ced6c117e",
   },
   {
     artist: "Serengeti",
@@ -1513,6 +1624,7 @@ export const albums: Album[] = [
     themeColor: "#7c847c",
     spotifyUrl: "https://open.spotify.com/album/4n0gHMF6kHWFlTd2saCXlX",
     spotifySearchUrl: "https://open.spotify.com/search/Serengeti%20With%20Greg%20from%20Deerhoof/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048513e19c8fe5119a4704e69c4bf",
   },
   {
     artist: "Baroness",
@@ -1525,6 +1637,7 @@ export const albums: Album[] = [
     themeColor: "#a8946b",
     spotifyUrl: "https://open.spotify.com/album/4mSoz87AFyUIcZlCmwbI8s",
     spotifySearchUrl: "https://open.spotify.com/search/Baroness%20Yellow%20%26%20Green/albums",
+    imageSmall: "https://i.scdn.co/image/ab67616d00004851da12f695382c0cfc9e36a2eb",
   },
   {
     artist: "Hüsker Dü",
@@ -1537,5 +1650,6 @@ export const albums: Album[] = [
     themeColor: "#8174a2",
     spotifyUrl: "https://open.spotify.com/album/0J1DP5GvKrzWumwzlcFhLc",
     spotifySearchUrl: "https://open.spotify.com/search/H%C3%BCsker%20D%C3%BC%20Zen%20Arcade/albums",
-  }
+    imageSmall: "https://i.scdn.co/image/b2a594d591342c673e421465a84861ba180e98ab",
+  },
 ];

@@ -1,16 +1,16 @@
-#tier-filter {
+.tier-filter {
     display: flex;
     flex-flow: row wrap;
     gap: 0.75em;
-    padding-block: 5vh 4vh;
+    padding-block: 0 4vh;
     align-content: flex-start;
 }
 .btn-filter {
     flex: 1 0 0;
     padding-inline: 1.5em;
-    background-color: rgb(250, 250, 250, 5%);
-    border: 2px solid rgb(250, 250, 250, 20%);
-    border-radius: 5px;
+    background-color: rgb(250, 250, 250, 3%);
+    border: 1px solid rgb(250, 250, 250, 20%);
+    border-radius: 7px;
     height: 5vh;
     
     &.tier-1 {
@@ -22,15 +22,15 @@
     }
     &:focus,
     &:active {
-        background-color: rgb(250, 250, 250, 10%);
+        background-color: rgb(250, 250, 250, 5%);
         border-color: rgb(250, 250, 250, 30%);
     }
 
     &.selected,
     &.selected:focus,
     &.selected:active {
-        background-color: rgba(102, 255, 187, 20%);
-        border-color: rgb(102, 255, 187, 50%);
+        background-color: rgba(102, 255, 187, 10%);
+        border-color: rgb(102, 255, 187, 40%);
     }
 }
 
@@ -78,15 +78,54 @@
     }
 }
 
+// Filters on bottom
+// @media (min-width: 768px) {
+//     .btn-filter {
+//         flex: 1 0 0;
+//         height: 3.5em;   
+//         &.tier-1 {
+//             flex: 1 30%;
+//         }
+//         &.tier-0 {
+//             flex: 1 0 0;
+//         }
+//     }
+// }
+
+// Filters on right
 @media (min-width: 768px) {
-    #tier-filter {
-        padding-block: 1em 1em;
+    .tier-filter {
+        flex-flow: column;
+        margin-top: 1.5em;
+        margin-inline: 1em 0;
     }
     .btn-filter {
         padding-inline: 0.5em;
-        flex: 1 0 45%;
+        flex: auto;
+        text-align: left;
+        padding-inline: 20% 1em;
+        position: relative;
+
+        // Right-pointing triangle marking the selected tier
+        &.selected::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 1em;
+            width: 0.8em;
+            height: 0.8em;
+            transform: translateY(-50%);
+            background-color: currentColor;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+        &.tier-1,
+        &.tier-2,
+        &.tier-3,
         &.tier-0 {
-            flex: 1 0 100%;
+            flex: 0 1 auto;
+            height: 6vh;
+            width: 95%;
         }
     }
 }

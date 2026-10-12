@@ -6,16 +6,16 @@ type TierProps = {
 }
 
 const tiers = [
-  { tier: 1, label: "Top 50 Favorites" },
-  { tier: 2, label: "> 50" },
-  { tier: 3, label: "More" },
+  { tier: 1, label: "My Favorite 50" },
+  { tier: 2, label: "Silver" },
+  { tier: 3, label: "Bronze" },
   { tier: 0, label: "All" }
 ]
 
 
 function TierFilter({tierGroup, setTierGroup}: TierProps) {
   return (
-    <div id="tier-filter">
+    <div className="tier-filter">
       {tiers.map((i) => (
         <button
           key={i.tier}

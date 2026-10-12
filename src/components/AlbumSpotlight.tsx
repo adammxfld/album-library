@@ -14,6 +14,13 @@ const TRANSITION_MS = 500;
 
 const CLOSE_DISTANCE_RATIO = 0.35; // fraction of panel width dragged left to force a close
 
+// Derives the Spotify album id from a URL like
+// https://open.spotify.com/album/{id}(?si=...) — returns null for missing
+// or malformed URLs so callers can fall back gracefully.
+function getSpotifyAlbumId(spotifyUrl: string | null): string | null {
+  return spotifyUrl?.match(/\/album\/([a-zA-Z0-9]+)/)?.[1] ?? null;
+}
+
 function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
   const [displayedAlbum, setDisplayedAlbum] = useState(album);
   const [isVisible, setIsVisible] = useState(album !== null);
@@ -36,24 +43,24 @@ function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
   });
 
   useEffect(() => {
-    // Open only if the spotlight is currently closed.
-    if (displayedAlbum === null && album !== null) {
+    // Open (or reopen mid-close — cleanup has already cancelled the clear timer).
+    if (album !== null) {
       setDisplayedAlbum(album);
       setIsVisible(true);
       return;
     }
 
-    // Close the currently displayed album.
-    if (album === null && displayedAlbum !== null) {
-      setIsVisible(false);
+    // Close, keeping the album rendered until the slide-out finishes.
+    setIsVisible(false);
 
-      const timer = setTimeout(() => {
-        setDisplayedAlbum(null);
-      }, TRANSITION_MS);
+    const timer = setTimeout(() => {
+      setDisplayedAlbum(null);
+    }, TRANSITION_MS);
 
-      return () => clearTimeout(timer);
-    }
-  }, [album, displayedAlbum]);
+    return () => clearTimeout(timer);
+  }, [album]);
+
+  const spotifyAlbumId = getSpotifyAlbumId(displayedAlbum?.spotifyUrl ?? null);
 
   const dragStyle: CSSProperties | undefined =
     drawer.value != null
@@ -96,10 +103,33 @@ function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
               <li className="album-artist">{displayedAlbum.artist}</li>
               <li className="album-year">{displayedAlbum.year}</li>
               {/* use <i> or something else? */}
-              <li className="album-title"><i>{displayedAlbum.title}</i></li>
+              <li className="album-title"><cite>{displayedAlbum.title}</cite></li>
             </>
           )}
         </ul>
+        {isVisible && displayedAlbum && spotifyAlbumId && (
+          <div className="album-player">
+            <iframe
+              key={spotifyAlbumId}
+              title={`${displayedAlbum.artist} – ${displayedAlbum.title} on Spotify`}
+              src={`https://open.spotify.com/embed/album/${spotifyAlbumId}`}
+              width="100%"
+              height="80"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            />
+            
+          </div>
+        )}
+        {isVisible && displayedAlbum && !spotifyAlbumId && (
+          <a
+            className="album-player-fallback"
+            href={displayedAlbum.spotifySearchUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Search on Spotify
+          </a>
+        )}
         <div className="album-case" />
         <div className="cassette" />
       </div>
