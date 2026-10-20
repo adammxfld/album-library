@@ -9,6 +9,7 @@
     flex: 1 0 0;
     padding-inline: 1.5em;
     background-color: rgb(250, 250, 250, 3%);
+    color: inherit;
     border: 1px solid rgb(250, 250, 250, 20%);
     border-radius: 7px;
     height: 5vh;
@@ -78,20 +79,6 @@
     }
 }
 
-// Filters on bottom
-// @media (min-width: 768px) {
-//     .btn-filter {
-//         flex: 1 0 0;
-//         height: 3.5em;   
-//         &.tier-1 {
-//             flex: 1 30%;
-//         }
-//         &.tier-0 {
-//             flex: 1 0 0;
-//         }
-//     }
-// }
-
 // Filters on right
 @media (min-width: 768px) {
     .tier-filter {
@@ -100,10 +87,9 @@
         margin-inline: 1em 0;
     }
     .btn-filter {
-        padding-inline: 0.5em;
         flex: auto;
         text-align: left;
-        padding-inline: 20% 1em;
+        padding-inline: 3em 1em;
         position: relative;
 
         // Right-pointing triangle marking the selected tier
@@ -126,6 +112,22 @@
             flex: 0 1 auto;
             height: 6vh;
             width: 95%;
+            min-width: 10.85em;
         }
     }
 }
+
+
+// Filters on bottom
+// @media (min-width: 768px) {
+//     .btn-filter {
+//         flex: 1 0 0;
+//         height: 3.5em;   
+//         &.tier-1 {
+//             flex: 1 30%;
+//         }
+//         &.tier-0 {
+//             flex: 1 0 0;
+//         }
+//     }
+// }

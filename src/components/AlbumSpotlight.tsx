@@ -2,10 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import type { Album } from "../albums_data.js";
 import { useDrawer } from "../hooks/useDrawer";
+import type { SpotifyPlayerState } from "../hooks/useSpotifyPlayer.ts";
+import { getSpotifyAlbumId } from "../spotify/api.ts";
+import SpotifyPlayer from "./SpotifyPlayer.tsx";
 import "./AlbumSpotlight.scss";
 
 export interface AlbumSpotlightProps {
   album: Album | null;
+  spotify: SpotifyPlayerState;
   onClose: () => void;
 }
 
@@ -14,14 +18,7 @@ const TRANSITION_MS = 500;
 
 const CLOSE_DISTANCE_RATIO = 0.35; // fraction of panel width dragged left to force a close
 
-// Derives the Spotify album id from a URL like
-// https://open.spotify.com/album/{id}(?si=...) — returns null for missing
-// or malformed URLs so callers can fall back gracefully.
-function getSpotifyAlbumId(spotifyUrl: string | null): string | null {
-  return spotifyUrl?.match(/\/album\/([a-zA-Z0-9]+)/)?.[1] ?? null;
-}
-
-function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
+function AlbumSpotlight({ album, spotify, onClose }: AlbumSpotlightProps) {
   const [displayedAlbum, setDisplayedAlbum] = useState(album);
   const [isVisible, setIsVisible] = useState(album !== null);
 
@@ -109,15 +106,12 @@ function AlbumSpotlight({ album, onClose }: AlbumSpotlightProps) {
         </ul>
         {isVisible && displayedAlbum && spotifyAlbumId && (
           <div className="album-player">
-            <iframe
+            <SpotifyPlayer
               key={spotifyAlbumId}
-              title={`${displayedAlbum.artist} – ${displayedAlbum.title} on Spotify`}
-              src={`https://open.spotify.com/embed/album/${spotifyAlbumId}`}
-              width="100%"
-              height="80"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              albumId={spotifyAlbumId}
+              albumLabel={`${displayedAlbum.artist} – ${displayedAlbum.title}`}
+              spotify={spotify}
             />
-            
           </div>
         )}
         {isVisible && displayedAlbum && !spotifyAlbumId && (

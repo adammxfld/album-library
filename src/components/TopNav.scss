@@ -4,6 +4,8 @@ header {
   left: 0;
   right: 0;
   height: var(--nav-height);
+  max-width: var(--max-width);
+  margin-inline: auto;
   z-index: 2;
   display: flex;
   flex-flow: row nowrap;
@@ -13,78 +15,45 @@ header {
   box-shadow: var(--shadow);
 }
 
-.logo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: var(--nav-height);
-  width: auto;
-  box-sizing: border-box;
-  padding: 1em;
-  transition: transform 0.15s ease-in-out;
-  transform-origin: 0 0;
-  -webkit-touch-callout: none;
-  user-select: none;
-  -webkit-user-select: none;
-
-  &:active {
-    transform: scale(4);
-  }
-}
-
 .intro {
   display: flex;
-  flex-direction: column;
-  justify-content: end;
-  margin: 0 auto;
-  width: 95vw;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: auto;
   max-width: calc(500px - 1.5em);
-  padding-inline: 1.25em;
-  padding-block: 1em;
-  align-items: end;
-  p {
-    align-content: start;
-  }
+  padding-inline: 1em 0;
+  padding-block: 0;
+  line-height: 1.25;
 }
 
 .headline {
-  font-size: 0.85em;
-  font-weight: 600;
-  letter-spacing: 0.75px;
+  font-size: 3.85em;
+  font-weight: 700;
+  letter-spacing: -5%;
   display: inline-block;
-  transform: scaleY(1.15);
-}
-.subtext {
-  text-align: end;
-  font-size: 1em;
-  font-weight: 300;
-  transform: scaleY(1.05);
-  font-style: italic;
+  color: rgb(99 65 95);
+  transform: translateX(-21.45%) scaleX(0.6);
+  width: 100%;
+
+  .headline-logo {
+    height: 0.65em;
+    width: auto;
+    vertical-align: middle;
+    scale: 1.667 1;
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    z-index: 1;
+  }
+
+  .logoletter2,
+  .title {
+    margin-left: -25px;
+  }
 }
 
 @media (prefers-color-scheme: light) {
   header {
     border-bottom: 1px solid rgb(0 0 0 / 5%);
-  }
-}
-
-@media (min-width: 400px) {
-  .headline {
-    font-size: clamp(1em, calc(11.6522px + 1.087vw), 1.25em);
-  }
-}
-
-@media (min-width: 768px) {
-  .logo {
-    padding: 1em;
-  }
-  .intro {
-    width: 95vw;
-    max-width: 425px;
-    margin-inline: auto;
-    padding-block: 1em;
-  }
-  .subtext {
-    font-size: 1em;
   }
 }

@@ -1,6 +1,7 @@
 :root {
   --nav-height: 10vh;
   --z-index-spotlight: 10;
+  --max-width: 1280px;
 
   --text: #adbfc2;
   --text-h: #f3f4f6;
@@ -30,7 +31,7 @@
 }
 @media (min-width: 768px) {
   :root {
-    --nav-height: 15vh;
+    --nav-height: 10vh;
   }
 }
 
@@ -58,7 +59,7 @@ body {
 
 #root {
   width: 99vw;
-  max-width: 100%;
+  max-width: var(--max-width);
   margin: 0 auto;
   min-height: 100svh;
   display: flex;

@@ -64,12 +64,13 @@
   flex-direction: column;
   gap: 0.1em;
   margin: 0 auto;
-  width: 95vw;
+  width: 99vw;
   max-width: 425px;
   padding-inline: 0.6em;
   padding-top: calc(var(--padding-top) + 0.5em);
   padding-bottom: calc(var(--closed-nav-height) + 0.75em);
   container-type: inline-size;
+  box-sizing: border-box;
 }
 @media (prefers-color-scheme: light) {
   .album-list {
@@ -234,7 +235,7 @@ button:focus-visible + .spine {
     margin-bottom: 1.5em
   }
 }
-// Rotated in Large devices
+// Rotated for Large devices
 // @media (min-width: 768px) {
 //   .library {
 //     position: absolute;

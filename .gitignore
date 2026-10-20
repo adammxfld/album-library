@@ -10,6 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+dist-embed
+*.tsbuildinfo
+src/albums_data-small.ts
 *.local
 .env
 
@@ -24,3 +27,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local working files
+src/assets/logo-purp.*
+src/assets/sleeve purp.*
+src/components/TopNav_x.scss
