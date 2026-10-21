@@ -1,16 +1,13 @@
 :root {
   --nav-height: 10vh;
   --z-index-spotlight: 10;
-
+  --max-width: 1280px;
   --text: #adbfc2;
   --text-h: #f3f4f6;
+  --album-copy: rgba(255, 255, 255, 0.94);
   --bg: #19131b;
   --contrast-bg: #0d070f;
   --border: #2e303a;
-  --code-bg: #1f2028;
-  --accent: #c084fc;
-  --accent-bg: rgba(192, 132, 252, 0.15);
-  --accent-border: rgba(192, 132, 252, 0.5);
   --shadow:
     rgba(25, 19, 27, 0.5) 0 7px 4px -4px, rgba(25, 19, 27, 0.25) 0 8px 4px -4px;
 
@@ -30,7 +27,7 @@
 }
 @media (min-width: 768px) {
   :root {
-    --nav-height: 15vh;
+    --nav-height: 10vh;
   }
 }
 
@@ -41,10 +38,6 @@
   --bg: #e1e1e1;
   --contrast-bg: #eeeeee;
   --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
   --shadow:
     rgba(0,0,0,.1) 0 -10px 15px -3px, rgba(0,0,0,.05) 0 -4px 6px -2px;
     /* rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px; */
@@ -58,7 +51,7 @@ body {
 
 #root {
   width: 99vw;
-  max-width: 100%;
+  max-width: var(--max-width);
   margin: 0 auto;
   min-height: 100svh;
   display: flex;

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useAlbumFilters } from './hooks/useAlbumFilters.ts';
 import TierFilter from './components/TierFilter.tsx';
 import { useMediaQuery } from './hooks/useMediaQuery.ts';
+import { useSpotifyPlayer } from './hooks/useSpotifyPlayer.ts';
 import './App.scss';
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
   const {
     tierGroup,
     setTierGroup,
+    sortOrder,
+    setSortOrder,
     genreSelections,
     handleGenreChange,
     clearGenres,
@@ -22,10 +25,12 @@ function App() {
     filteredAlbums,
   } = useAlbumFilters(albums);
 
+  const spotify = useSpotifyPlayer();
+
   return (
     <>
-      <TopNav />
-      <AlbumSpotlight album={selectedAlbum} onClose={() => setSelectedAlbum(null)} />
+      <TopNav sortOrder={sortOrder} onSortOrderChange={setSortOrder} />
+      <AlbumSpotlight album={selectedAlbum} spotify={spotify} onClose={() => setSelectedAlbum(null)} />
       <main>
         {isLargeScreen && (
           <TierFilter tierGroup={tierGroup} setTierGroup={setTierGroup} />

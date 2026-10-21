@@ -8,18 +8,14 @@ export interface AlbumListProps {
 }
 
 function AlbumList({ albums, selectedAlbum, onSelectAlbum }: AlbumListProps) {
-  const sortedAlbums = [...albums].sort((a, b) =>
-    a.title.localeCompare(b.title)
-  );
-
   return (
     <section
       className="library">
-      {sortedAlbums.length === 0 ? (
+      {albums.length === 0 ? (
         <div className="album-list no-albums">Nothingness</div>
       ) : (
       <ul className="album-list">
-        {sortedAlbums.map((album) => (
+        {albums.map((album) => (
           <li
             key={`${album.artist}-${album.title}`}
             className="album-entry"

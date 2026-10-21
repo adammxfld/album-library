@@ -16,6 +16,13 @@ function GenreFilter({ genres, selectedGenres, onGenreChange, onClearGenres }: G
       {isLargeScreen && (
         <h3>Filter by genre</h3>
       )}
+      <button
+        type="button"
+        className="btn-clear"
+        disabled={selectedGenres.length === 0}
+        onClick={onClearGenres}>
+        <span>clear filters</span>
+      </button>
       {genres.map((genre) => (
         <label key={genre}>
           <input
@@ -25,13 +32,6 @@ function GenreFilter({ genres, selectedGenres, onGenreChange, onClearGenres }: G
           {genre}
         </label>
       ))}
-      <button
-        type="button"
-        className="btn-clear"
-        disabled={selectedGenres.length === 0}
-        onClick={onClearGenres}>
-        Clear filters
-      </button>
     </form>
   );
 }

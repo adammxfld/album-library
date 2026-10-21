@@ -1,9 +1,13 @@
 import { useState } from "react";
 import type { Album } from "../albums_data";
 
+export type SortOrder = "alphabetical" | "random";
+
 export interface UseAlbumFiltersResult {
   tierGroup: number;
   setTierGroup: (tier: number) => void;
+  sortOrder: SortOrder;
+  setSortOrder: (order: SortOrder) => void;
   genreSelections: string[];
   handleGenreChange: (genre: string, checked: boolean) => void;
   clearGenres: () => void;
@@ -11,9 +15,23 @@ export interface UseAlbumFiltersResult {
   filteredAlbums: Album[];
 }
 
+function randomizeRanks(albums: Album[]): Map<Album, number> {
+  return new Map(albums.map((album) => [album, Math.random()]));
+}
+
 export function useAlbumFilters(albums: Album[]): UseAlbumFiltersResult {
   const [tierGroup, setTierGroup] = useState(1);
   const [genreSelections, setGenreSelections] = useState<string[]>([]);
+  const [sortOrder, setSortOrderState] = useState<SortOrder>("random");
+  // A random rank per album, regenerated each time random order is chosen.
+  const [randomRanks, setRandomRanks] = useState(() => randomizeRanks(albums));
+
+  function setSortOrder(order: SortOrder) {
+    if (order === "random") {
+      setRandomRanks(randomizeRanks(albums));
+    }
+    setSortOrderState(order);
+  }
 
   function handleGenreChange(genre: string, checked: boolean) {
     setGenreSelections((currentGenres) => {
@@ -37,11 +55,17 @@ export function useAlbumFilters(albums: Album[]): UseAlbumFiltersResult {
       album.genres.some((genre) => genreSelections.includes(genre));
 
     return matchesTier && matchesGenres;
-  });
+  }).sort((a, b) =>
+    sortOrder === "random"
+      ? (randomRanks.get(a) ?? 0) - (randomRanks.get(b) ?? 0)
+      : a.title.localeCompare(b.title)
+  );
 
   return {
     tierGroup,
     setTierGroup,
+    sortOrder,
+    setSortOrder,
     genreSelections,
     handleGenreChange,
     clearGenres,

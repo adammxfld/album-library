@@ -13,7 +13,7 @@ $case-delay: 0s;
   height: auto;
   margin-inline: auto;
   margin-top: 10vh;
-  transform: translateX(-100vw);
+  transform: translateX(-150vw);
   transition: transform $case-duration ease;
   container-type: inline-size;
   touch-action: pan-y;
@@ -65,12 +65,13 @@ $case-delay: 0s;
   width: auto;
   font-size: 5cqw;
   font-weight: 600;
-  line-height: 1;
+  line-height: 0.95;
   list-style: none;
   display: flex;
   flex-flow: row wrap;
   padding: 0.5em 2em;
   margin: 0;
+  color: var(--album-copy);
 
   > * {
     align-content: center;
@@ -97,17 +98,9 @@ $case-delay: 0s;
   position: absolute;
   left: 0;  
   right: 0;
-  bottom: 1.5em;
-  padding: 0 1.5em;
-  border-radius: 15px;
-
-  iframe {
-    display: block;
-    width: 100%;
-    height: 80px;
-    border: none;
-    border-radius: 15px;
-  }
+  bottom: 4%;
+  margin: 0 8%;
+  border-radius: 5px;
 }
 
 .album-player-fallback {

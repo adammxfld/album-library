@@ -1,5 +1,5 @@
-import { useState } from "react";
-import type { CSSProperties } from "react";
+import { useRef, useState } from "react";
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 import TierFilter from "./TierFilter";
 import GenreFilter from "./GenreFilter";
 import { useDrawer } from "../hooks/useDrawer";
@@ -21,6 +21,7 @@ const LARGE_SCREEN_QUERY = "(min-width: 768px)";
 const LARGE_CLOSED_HEIGHT_VH = 15;
 const LARGE_OPEN_HEIGHT_VH = 45;
 const OPEN_DISTANCE_RATIO = 0.05; // fraction of the open/closed travel dragged to force a toggle
+const SWIPE_PX = 30; // vertical distance that counts as a hide/show swipe
 
 function vhToPx(vh: number) {
   return (window.innerHeight * vh) / 100;
@@ -37,6 +38,9 @@ function travelPx() {
 function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChange, onClearGenres }: FiltersProps) {
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = useState(false);
+  // Swiped down from the default strip so only the handle shows.
+  const [isHidden, setIsHidden] = useState(false);
+  const swipeStartY = useRef<number | null>(null);
 
   // The hook's "value" is a reveal amount (0 = closed, travelPx() = fully
   // open), not the literal translateY offset — translateY is the complement
@@ -60,32 +64,56 @@ function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChang
         } as CSSProperties)
       : undefined;
 
+  // Closed → swipe down hides; hidden → swipe up restores the strip.
+  function handleSwipeEnd(e: ReactPointerEvent<HTMLElement>) {
+    const startY = swipeStartY.current;
+    swipeStartY.current = null;
+    if (startY == null || isOpen) return;
+    const dy = e.clientY - startY;
+    if (!isHidden && dy > SWIPE_PX) setIsHidden(true);
+    if (isHidden && dy < -SWIPE_PX) setIsHidden(false);
+  }
+
+  function toggleFromHandle() {
+    // A tap on the hidden panel restores the strip rather than opening fully.
+    if (isHidden) setIsHidden(false);
+    else setIsOpen(!isOpen);
+  }
+
   return (
     <nav
-      className={isOpen ? "open" : undefined}
+      className={isOpen ? "open" : isHidden ? "hidden" : undefined}
       style={dragStyle}
       onPointerDown={(e) => {
         // Large screens toggle via the handle only, no dragging
         if (window.matchMedia(LARGE_SCREEN_QUERY).matches) {
           return;
         }
-        drawer.onPointerDown(e);
+        swipeStartY.current = e.clientY;
+        // While hidden, don't let the drawer read an upward swipe as "open fully".
+        if (!isHidden) drawer.onPointerDown(e);
       }}
       onPointerMove={drawer.onPointerMove}
-      onPointerUp={drawer.onPointerUp}
-      onPointerCancel={drawer.onPointerUp}
+      onPointerUp={(e) => {
+        drawer.onPointerUp(e);
+        handleSwipeEnd(e);
+      }}
+      onPointerCancel={(e) => {
+        drawer.onPointerUp(e);
+        swipeStartY.current = null;
+      }}
     >
       <div
         className="open-handle"
         role="button"
         tabIndex={0}
-        aria-label={isOpen ? "Close filters" : "Open filters"}
+        aria-label={isOpen ? "Close filters" : isHidden ? "Show filters" : "Open filters"}
         aria-expanded={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleFromHandle}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            setIsOpen(!isOpen);
+            toggleFromHandle();
           }
         }}
       >

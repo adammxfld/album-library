@@ -29,6 +29,10 @@ nav {
     &.open {
         --nav-offset: 0;
     }
+
+    &.hidden {
+        --nav-offset: calc(75vh - 4.5vh);
+    }
 }
 
 .open-handle {
@@ -61,63 +65,6 @@ nav {
         border-top: 1px solid rgba(175, 175, 175, 0.75);
     }
 }
-
-// Filters at bottom
-// @media (min-width: 768px) {
-//     nav {
-//         --nav-offset: 30vh;
-//         height: 45vh;
-
-//         div, 
-//         form {
-//             width: 85vw;
-//             max-width: unset;
-//         }
-//     }
-//     .open-handle::before {
-//         content: none;
-//     }
-
-//     .open-chevron {
-//         position: absolute;
-//         top: 0.55em;
-//         left: 50%;
-//         transform: translateX(-50%);
-//         display: block;
-//         width: 4em;
-//         height: 0.5em;
-//     }
-
-//     .open-chevron::before,
-//     .open-chevron::after {
-//         content: "";
-//         position: absolute;
-//         top: 50%;
-//         width: 52%;
-//         height: 3px;
-//         background: currentColor;
-//         border-radius: 3px;
-//         transition: transform var(--nav-transition-duration) ease;
-//     }
-
-//     .open-chevron::before {
-//         left: 0;
-//         transform: rotate(-20deg);
-//     }
-
-//     .open-chevron::after {
-//         right: 0;
-//         transform: rotate(20deg);
-//     }
-
-//     nav.open .open-chevron::before {
-//         transform: rotate(20deg);
-//     }
-
-//     nav.open .open-chevron::after {
-//         transform: rotate(-20deg);
-//     }
-// }
 
 // Filters on right
 @media (min-width: 768px) {
@@ -211,5 +158,64 @@ nav {
 //         min-width: 4em;
 //         max-width: 13em;
 //         align-content: center;
+//     }
+// }
+
+
+
+// Filters at bottom
+// @media (min-width: 768px) {
+//     nav {
+//         --nav-offset: 30vh;
+//         height: 45vh;
+
+//         div, 
+//         form {
+//             width: 85vw;
+//             max-width: unset;
+//         }
+//     }
+//     .open-handle::before {
+//         content: none;
+//     }
+
+//     .open-chevron {
+//         position: absolute;
+//         top: 0.55em;
+//         left: 50%;
+//         transform: translateX(-50%);
+//         display: block;
+//         width: 4em;
+//         height: 0.5em;
+//     }
+
+//     .open-chevron::before,
+//     .open-chevron::after {
+//         content: "";
+//         position: absolute;
+//         top: 50%;
+//         width: 52%;
+//         height: 3px;
+//         background: currentColor;
+//         border-radius: 3px;
+//         transition: transform var(--nav-transition-duration) ease;
+//     }
+
+//     .open-chevron::before {
+//         left: 0;
+//         transform: rotate(-20deg);
+//     }
+
+//     .open-chevron::after {
+//         right: 0;
+//         transform: rotate(20deg);
+//     }
+
+//     nav.open .open-chevron::before {
+//         transform: rotate(20deg);
+//     }
+
+//     nav.open .open-chevron::after {
+//         transform: rotate(-20deg);
 //     }
 // }
