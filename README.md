@@ -1,16 +1,33 @@
-# React + Vite
+# Album Feature
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- A React + Vite + TypeScript album library with full-album Spotify playback.
+- For exploring a currated music library.
+- Retro design.
 
-Currently, two official plugins are available:
+## Spotify playback
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Auth:** Authorization Code with PKCE (`src/spotify/auth.ts`). No client secret in the frontend; tokens refresh automatically.
+- **Player:** Web Playback SDK makes the browser a Spotify device (`src/hooks/useSpotifyPlayer.ts`).
+- **Playback:** Web API starts the album on that device (`src/spotify/api.ts`).
+- **Fallback:** when not connected, or for non-Premium accounts, the Spotify embed is shown instead.
 
-## React Compiler
+Requires Spotify Premium. While the app is in Spotify's Development Mode, only users listed under **User Management** in the Spotify dashboard can connect.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Setup
 
-## Expanding the ESLint configuration
+1. In the Spotify dashboard, enable **Web API** and **Web Playback SDK**, then add these redirect URIs:
+   - `http://127.0.0.1:5173/`
+   - `https://adammaxfield.com/projects/album-feature/`
+2. Add to `.env` (gitignored):
+   ```
+   VITE_SPOTIFY_CLIENT_ID=your_client_id
+   VITE_SPOTIFY_REDIRECT_URI=http://127.0.0.1:5173/
+   ```
+   `.env.production` (committed) sets the production redirect URI.
+3. `npm install`, then `npm run dev` and open http://127.0.0.1:5173/ (Spotify rejects `localhost`).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Build
+
+`npm run build` writes to `dist-embed/`.
+
+> Never put secrets in `VITE_` variables, because they're bundled into the frontend. `SPOTIFY_CLIENT_SECRET` in `.env` is only for the Node scripts in `scripts/`.
