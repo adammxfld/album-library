@@ -1,7 +1,7 @@
 # Album Feature
 
 - A React + Vite + TypeScript album library with full-album Spotify playback.
-- For exploring a currated music library.
+- For exploring a curated music library.
 - Retro design.
 
 ## Spotify playback
