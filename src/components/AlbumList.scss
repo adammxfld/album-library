@@ -181,16 +181,17 @@ button:focus-visible + .spine {
   }
 }
 
-.copy-artist, .copy-album {
+.copy-artist, 
+.copy-album {
   z-index: calc(var(--entry-z-index) + 1);
   position: relative;
-  color: rgba(255, 255, 255, 0.94);
+  color: var(--album-copy);
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   height: auto;
   align-content: center;
   width: auto;
-  padding-inline: 1.5em;
+  padding-inline: 1.5em 3.5em;
   > * {
     display: block;
     white-space: nowrap;

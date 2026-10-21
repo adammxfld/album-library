@@ -55,8 +55,14 @@
 }
 
 @media (prefers-color-scheme: light) {
-    .btn-sort.selected {
-        color: rgb(29, 131, 85);
+    .btn-sort {
+        &.selected {
+            color: rgb(198, 6, 160);
+        }
+
+        &:focus-visible {
+            outline: 2px solid rgb(198, 6, 160);
+        }
     }
 }
 

@@ -34,19 +34,29 @@ header {
   color: rgb(99 65 95);
   transform: translateX(-21.45%) scaleX(0.6);
   width: 100%;
+  margin-block-start: 0;
 
-  .headline-logo {
+  .logo {
     height: 0.65em;
     width: auto;
     vertical-align: middle;
     scale: 1.667 1;
     position: absolute;
-    left: 10px;
+    left: 4px;
     top: 20px;
     z-index: 1;
+    transition: transform 0.15s ease-in-out;
+    transform-origin: 0 0;
+    -webkit-touch-callout: none;
+    user-select: none;
+    -webkit-user-select: none;
+    
+    &:active {
+      transform: scale(20);
+    }
   }
 
-  .logoletter2,
+  .logo-letters,
   .title {
     margin-left: -25px;
   }

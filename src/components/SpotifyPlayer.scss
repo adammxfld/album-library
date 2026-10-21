@@ -7,6 +7,7 @@
   border-radius: 5px;
   background: color-mix(in srgb, #000 15%, transparent);
   border: 1px solid color-mix(in srgb, currentColor 5%, transparent);
+  color: var(--album-copy);
   font-size: 0.75rem;
   line-height: 1.2;
   position: relative;
