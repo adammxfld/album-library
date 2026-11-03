@@ -922,7 +922,7 @@ export const albums: Album[] = [
     themeColor: "#8b7965",
     spotifyUrl: "https://open.spotify.com/album/2SctzR3lb5YN3EJzTf9Kbs",
     spotifySearchUrl: "https://open.spotify.com/search/Little%20Joy%20Little%20Joy",
-    imageSmall: "https://i.scdn.co/image/ab67616d0000485131bc31348b8e264ba8bacb55",
+    imageSmall: "https://i.scdn.co/image/ab67616d000048518dd16aaa83eb017b60ba0ad6",
   },
   {
     artist: "The Clash",

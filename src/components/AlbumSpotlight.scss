@@ -110,6 +110,7 @@ $case-delay: 0s;
 }
 
 $cassette-duration: 2s;
+$record-duration: 1.75s;
 $cassette-travel: calc(50vw + 100%);
 
 @keyframes cassette-entrance {
@@ -148,9 +149,68 @@ $cassette-travel: calc(50vw + 100%);
   transform: translateX(0);
   visibility: hidden;
 }
+@media (min-width: 1280px) {
+  .album-spotlight {
+    aspect-ratio: 407 / 575;
+  }
+
+  .album-case {
+    background-image: url("../assets/record-sleeve.png");
+    aspect-ratio: 1 / 1;
+    background-size: 100% 100%;
+  }
+
+  .album-artwork {
+    padding: 3px;
+  }
+
+  .cassette {
+    background-image: url("../assets/record.png");
+    bottom: auto; // let aspect-ratio set the height so the record stays circular while spinning
+    aspect-ratio: 1 / 1;
+    background-size: 100% 100%;
+  }
+}
 
 .album-spotlight--visible .cassette {
   animation: cassette-entrance $cassette-duration linear forwards;
+}
+// Same path as cassette-entrance, but via `translate` instead of `transform`.
+// `translate` is applied before `rotate`, so the record spins around its own
+// center while sliding instead of orbiting.
+@keyframes record-entrance {
+  0% {
+    translate: 0;
+    visibility: visible;
+  }
+
+  35% {
+    translate: 70%;
+    visibility: visible;
+  }
+
+  99.9% {
+    visibility: visible;
+  }
+
+  100% {
+    translate: $cassette-travel;
+    visibility: hidden;
+  }
+}
+
+@keyframes record-spin {
+  to {
+    rotate: 2turn;
+  }
+}
+
+@media (min-width: 1280px) {
+  .album-spotlight--visible .cassette {
+    animation:
+      record-entrance $record-duration linear forwards,
+      record-spin 4s ease-out forwards;
+  }
 }
 
 .album-spotlight-close {

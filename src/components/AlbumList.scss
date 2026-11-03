@@ -218,6 +218,7 @@ button:focus-visible + .spine {
   text-align: center;
   word-wrap: anywhere;
 }
+
 @media (min-width: 768px) {
   .library {
     padding-left: 1em;
@@ -234,6 +235,77 @@ button:focus-visible + .spine {
   }
   .album-entry:last-of-type {
     margin-bottom: 1.5em
+  }
+}
+
+@media (min-width: 1280px) {
+  .album-list {
+    --mute-colors:
+      blur(5px)
+      saturate(10%)
+      brightness(20%)
+      sepia(0%)
+      opacity(85%);
+  }
+  .library {
+    width: 100%;
+  }
+  .album-list {
+    width: 100%;
+    max-width: none;
+  }
+
+  .album-entry {
+    &:first-of-type {
+      margin-top: 1.5em
+    }
+    &:last-of-type {
+      margin-bottom: 1.5em
+    }
+
+    button {
+      aspect-ratio: 23 / 1.25;
+      font-size: 2.25cqw;
+      border-radius: 3%;
+
+      &::before {
+        bottom: 0.25px;
+        right: 0.5px;
+        border-bottom-left-radius: 20px 95%;
+        border-top-left-radius: 20px 95%;
+        border-bottom-right-radius: 20px 95%;
+        border-top-right-radius: 20px 95%;
+      }
+
+      &::after {
+        border-bottom-left-radius: 20px 95%;
+        border-top-left-radius: 20px 95%;
+        border-bottom-right-radius: 20px 95%;
+        border-top-right-radius: 20px 95%;
+      }
+    }
+    img {
+      height: calc(100% - 0.75em);
+      top: 0.35em;
+      left: 0.75em;
+      right: unset;
+    }
+    .spine {
+      background-image: none;
+    }
+  }
+
+  .copy-artist, .copy-album {
+    display: inline-block;
+  }
+
+  .copy-artist {
+    padding-inline: 4em 2em;
+    width: calc(30% - 2em);
+  }
+  .copy-album {
+    width: 60%;
+    padding-inline: 0 0;
   }
 }
 // Rotated for Large devices
