@@ -4,7 +4,7 @@ import SortFilter from "./SortFilter";
 import "./TopNav.scss";
 
 type TopNavProps = {
-  sortOrder: SortOrder;
+  sortOrder: SortOrder | null;
   onSortOrderChange: (order: SortOrder) => void;
 }
 

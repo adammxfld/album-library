@@ -12,8 +12,14 @@ export default defineConfig({
   build: {
     outDir: 'dist-embed',
     rollupOptions: {
+      input: {
+        index: 'index.html',
+        'guest-submission': 'guest-submission.html',
+      },
       output: {
-        entryFileNames: 'album-feature.js',
+        // Main page keeps album-feature.js so the site's existing embed doesn't change.
+        entryFileNames: (chunk) => chunk.name === 'index' ? 'album-feature.js' : '[name].js',
+        chunkFileNames: 'album-feature-[name].js', // code shared by both pages (e.g. React)
         assetFileNames: 'album-feature-[name][extname]',
       }
     }

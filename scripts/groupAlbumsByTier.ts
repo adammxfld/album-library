@@ -11,10 +11,9 @@ const match = file.match(
   /export const albums\s*=\s*\[([\s\S]*)\];\s*$/
 );
 
-if (!match) {
+if (!match?.[1]) {
   throw new Error("Could not find albums array.");
 }
-
 const contents = match[1];
 
 // Match each album object
