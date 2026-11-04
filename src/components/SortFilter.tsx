@@ -3,7 +3,7 @@ import { AzIcon, RandomIcon } from "./SortIcons";
 import "./SortFilter.scss";
 
 type SortProps = {
-  sortOrder: SortOrder;
+  sortOrder: SortOrder | null; // null = neither highlighted (Guest Picks grouped order)
   onSortOrderChange: (order: SortOrder) => void;
 }
 

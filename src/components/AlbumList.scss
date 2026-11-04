@@ -90,13 +90,24 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  img{
+  img,
+  .copy-guest{
     position: absolute;
     top: 0.5em;
     right: 0.75em;
     height: calc(100% - 1em);
     width: auto;
     opacity: 0.7;
+    font-size: 14px;
+  } 
+  .copy-guest {
+    color: var(--album-copy);
+    opacity: 0.8;
+    width: 3.5em;
+    line-height: 0.9;
+    font-size: 14px;
+    word-break: break-word;
+    z-index: calc(var(--entry-z-index) + 1);
   }
 }
 
@@ -208,12 +219,12 @@ button:focus-visible + .spine {
   font-style: italic;
 }
 
-.no-albums {
+.no-albums-message {
   font-size: 10cqw;
   opacity: 0.75;
   padding-top: var(--padding-top);
   padding-inline: 0;
-  margin: 10% auto;
+  margin: 0 auto;
   overflow: visible;
   text-align: center;
   word-wrap: anywhere;

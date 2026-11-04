@@ -5,14 +5,16 @@ import GenreFilter from "./GenreFilter";
 import { useDrawer } from "../hooks/useDrawer";
 import "./Filters.scss"
 import { useMediaQuery } from "../hooks/useMediaQuery";
+import type { TierGroup } from "../hooks/useAlbumFilters";
 
 export interface FiltersProps {
-  tierGroup: number;
-  onTierChange: (tier: number) => void;
+  tierGroup: TierGroup;
+  onTierChange: (tier: TierGroup) => void;
   genres: string[];
   selectedGenres: string[];
   onGenreChange: (genre: string, checked: boolean) => void;
   onClearGenres: () => void;
+  genresDisabled?: boolean;
 }
 // Must match Filters.scss: nav height, and height minus --nav-offset when closed.
 const CLOSED_HEIGHT_VH = 19;
@@ -35,7 +37,7 @@ function travelPx() {
     : vhToPx(OPEN_HEIGHT_VH - CLOSED_HEIGHT_VH);
 }
 
-function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChange, onClearGenres }: FiltersProps) {
+function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChange, onClearGenres, genresDisabled = false }: FiltersProps) {
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = useState(false);
   // Swiped down from the default strip so only the handle shows.
@@ -127,6 +129,7 @@ function Filters({ tierGroup, onTierChange, genres, selectedGenres, onGenreChang
         selectedGenres={selectedGenres}
         onGenreChange={onGenreChange}
         onClearGenres={onClearGenres}
+        disabled={genresDisabled}
       />
     </nav>
   );
