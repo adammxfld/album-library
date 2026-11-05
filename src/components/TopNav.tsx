@@ -1,5 +1,7 @@
+import { useState } from "react";
 import logo from "../assets/logo.png";
 import type { SortOrder } from "../hooks/useAlbumFilters";
+import InfoOverlay from "./InfoOverlay";
 import SortFilter from "./SortFilter";
 import "./TopNav.scss";
 
@@ -9,6 +11,8 @@ type TopNavProps = {
 }
 
 function TopNav({ sortOrder, onSortOrderChange }: TopNavProps) {
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+
   return (
     <header className="top-nav">
       <div className="intro">
@@ -25,10 +29,24 @@ function TopNav({ sortOrder, onSortOrderChange }: TopNavProps) {
             <span className="logo-letters">L</span>
             <span className="logo-letters">L</span>
           </span>
-          <span className="title">LongPlayers</span>
+          <span
+            className="title"
+            role="button"
+            tabIndex={0}
+            aria-haspopup="dialog"
+            onClick={() => setIsInfoOpen(true)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setIsInfoOpen(true);
+              }
+            }}>
+            LongPlayers
+          </span>
         </h1>
       </div>
       <SortFilter sortOrder={sortOrder} onSortOrderChange={onSortOrderChange} />
+      {isInfoOpen && <InfoOverlay onClose={() => setIsInfoOpen(false)} />}
     </header>
   );
 }

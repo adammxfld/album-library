@@ -60,6 +60,10 @@ header {
   .title {
     margin-left: -25px;
   }
+
+  .title {
+    cursor: pointer;
+  }
 }
 
 @media (prefers-color-scheme: light) {
