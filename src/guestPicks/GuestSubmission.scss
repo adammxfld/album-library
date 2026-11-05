@@ -70,7 +70,7 @@
     // Buttons match the tier filter: primary = selected tier, secondary = unselected.
     .btn-primary,
     .btn-secondary {
-        color: inherit;
+        color: var(--text-link);
         border-radius: 7px;
     }
 
