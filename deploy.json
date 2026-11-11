@@ -1,0 +1,6 @@
+{
+  "sshHost": "godaddy",
+  "remoteDir": "public_html/projects/album-feature",
+  "include": ["dist-embed/"],
+  "url": "https://adammaxfield.com/projects/album-feature/"
+}
