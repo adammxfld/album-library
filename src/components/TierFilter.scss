@@ -39,6 +39,12 @@
     .btn-filter {
         background-color: rgb(105, 105, 105, 5%);
         border-color: rgb(0, 0, 0, 25%);
+        border-width: 2px;
+        &.tier-2,
+        &.tier-guest-picks {
+            background-color: #ffffff59;
+            border-color: #00000070;
+        }
         &:focus,
         &:active {
             border-color: rgb(0, 0, 0, 15%);

@@ -77,9 +77,9 @@
     --mute-colors:
       blur(10px)
       saturate(130%)
-      brightness(40%)
+      brightness(30%)
       sepia(25%)
-      opacity(75%);
+      opacity(50%);
   }
 }
 
@@ -317,6 +317,18 @@ button:focus-visible + .spine {
   .copy-album {
     width: 60%;
     padding-inline: 0 0;
+  }
+}
+
+// Light mode, larger screens. After the 1280px rule so it wins there too.
+@media (min-width: 768px) and (prefers-color-scheme: light) {
+  .album-list {
+    --mute-colors:
+      blur(10px)
+      saturate(130%)
+      brightness(30%)
+      sepia(25%)
+      opacity(40%);
   }
 }
 // Rotated for Large devices

@@ -67,6 +67,10 @@ input {
     label {
         border-color: rgb(0, 0, 0, 15%);
     }
+    // Darker than --text so it stays readable at 0.7 opacity.
+    .btn-clear {
+        color: #1f2a30;
+    }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -112,8 +116,9 @@ input {
 
     @media (prefers-color-scheme: light) {
         .genre-filter {
-            margin-top: 1.5em;border: 1px solid rgba(51, 155, 166, 0.5)
-            ;
+            margin-top: 1.5em;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            background: #ffffff5e;
         }
     }
 }
