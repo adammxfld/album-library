@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import LoadingDots from "./LoadingDots.tsx";
 import "./AlbumList.scss";
 
@@ -9,7 +10,7 @@ export interface AlbumListEntry {
   title: string;
   themeColor: string | null;
   imageSmall?: string | null;
-  displayName?: string;
+  groupLabel?: string | undefined; // a line above the row, e.g. the guest who picked it
 }
 
 export interface AlbumListProps<T extends AlbumListEntry> {
@@ -34,8 +35,15 @@ function AlbumList<T extends AlbumListEntry>({ albums, selectedAlbum, onSelectAl
       <ul className="album-list">
         {header && <li className="album-list-header">{header}</li>}
         {albums.map((album) => (
+          <Fragment key={album.id ?? `${album.artist}-${album.title}`}>
+          {album.groupLabel && (
+            <li
+              className="album-group-label"
+              style={{ "--theme-color": album.themeColor } as React.CSSProperties}>
+              {album.groupLabel}
+            </li>
+          )}
           <li
-            key={album.id ?? `${album.artist}-${album.title}`}
             className="album-entry"
             style={{ "--theme-color": album.themeColor } as React.CSSProperties}
             aria-current={album === selectedAlbum ? "true" : undefined}
@@ -47,9 +55,6 @@ function AlbumList<T extends AlbumListEntry>({ albums, selectedAlbum, onSelectAl
                 <div className="copy-album">
                   <cite>{album.title}</cite>
                 </div>
-                {album.displayName && (
-                  <div className="copy-guest">{album.displayName}</div>
-                )}
               </button>
               <div className="spine"></div>
               {album?.imageSmall && (
@@ -60,6 +65,7 @@ function AlbumList<T extends AlbumListEntry>({ albums, selectedAlbum, onSelectAl
                 />
               )}
           </li>
+          </Fragment>
         ))}
       </ul>
       )}

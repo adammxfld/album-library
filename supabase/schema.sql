@@ -41,7 +41,9 @@ create table public.guest_picks (
   guest_id uuid not null references public.guests (id) on delete cascade,
   artist text not null check (char_length(artist) between 1 and 200),
   title text not null check (char_length(title) between 1 and 200),
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  -- Album art; only Apple's artwork host is accepted.
+  image_small text check (image_small is null or image_small ~ '^https://is[0-9]+-ssl\.mzstatic\.com/')
 );
 
 create index guest_picks_guest_id_idx on public.guest_picks (guest_id);
@@ -55,7 +57,7 @@ create index guest_picks_guest_id_idx on public.guest_picks (guest_id);
 -- aren't unique) in the order guests joined. guest_id is safe to expose: every
 -- write checks the private login name, not the id.
 create view public.guest_picks_public as
-select p.id, p.artist, p.title, g.display_name, g.color, p.created_at, g.id as guest_id, g.created_at as guest_created_at
+select p.id, p.artist, p.title, g.display_name, g.color, p.created_at, g.id as guest_id, g.created_at as guest_created_at, p.image_small
 from public.guest_picks p
 join public.guests g on g.id = p.guest_id;
 
@@ -150,8 +152,8 @@ as $$
   order by p.created_at;
 $$;
 
--- Adds a pick, enforcing the 25-pick cap.
-create or replace function public.add_guest_pick(p_login text, p_artist text, p_title text)
+-- Adds a pick, enforcing the 25-pick cap. p_image is optional album art.
+create or replace function public.add_guest_pick(p_login text, p_artist text, p_title text, p_image text default null)
 returns table (id uuid, artist text, title text, created_at timestamptz)
 language plpgsql
 security definer
@@ -162,6 +164,7 @@ declare
   v_key text := lower(btrim(coalesce(p_login, '')));
   v_artist text := btrim(coalesce(p_artist, ''));
   v_title text := btrim(coalesce(p_title, ''));
+  v_image text := nullif(btrim(coalesce(p_image, '')), '');
   v_guest_id uuid;
 begin
   if v_artist = '' or v_title = '' then
@@ -179,8 +182,8 @@ begin
   end if;
 
   return query
-    insert into public.guest_picks (guest_id, artist, title)
-    values (v_guest_id, v_artist, v_title)
+    insert into public.guest_picks (guest_id, artist, title, image_small)
+    values (v_guest_id, v_artist, v_title, v_image)
     returning guest_picks.id, guest_picks.artist, guest_picks.title, guest_picks.created_at;
 end;
 $$;
@@ -209,7 +212,7 @@ revoke execute on function
   public.sign_in_guest(text),
   public.create_guest(text, text),
   public.my_guest_picks(text),
-  public.add_guest_pick(text, text, text),
+  public.add_guest_pick(text, text, text, text),
   public.delete_guest_pick(text, uuid)
   from public;
 
@@ -217,7 +220,7 @@ grant execute on function
   public.sign_in_guest(text),
   public.create_guest(text, text),
   public.my_guest_picks(text),
-  public.add_guest_pick(text, text, text),
+  public.add_guest_pick(text, text, text, text),
   public.delete_guest_pick(text, uuid)
   to anon, authenticated;
 

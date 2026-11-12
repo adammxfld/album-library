@@ -1,7 +1,7 @@
 // Header at the top of the Guest Picks list (rendered inside .album-list-header).
 .album-list-header {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: baseline;
     margin-top: 1.5em;
@@ -53,6 +53,45 @@
     @media (prefers-color-scheme: light) {
         .guest-picks-link:hover {
             color: var(--text-link);
+        }
+    }
+}
+
+// "Look here" pulse when Guest Picks is clicked while already showing.
+.guest-picks-link.cued {
+    border-radius: 7px;
+    animation: add-yours-cue 0.8s ease-in-out 3;
+    &::before {
+        animation: add-yours-cue-plus 0.8s ease-in-out 3;
+    }
+}
+@keyframes add-yours-cue {
+    50% { background-color: rgba(102, 255, 187, 15%); }
+}
+@keyframes add-yours-cue-plus {
+    50% { scale: 1.4; color: rgb(107, 211, 145); }
+}
+
+// Guests, one per line, above the picks in alphabetical and random order.
+.guest-legend {
+    flex-basis: 100%;
+    list-style: none;
+    margin: 0.25em 0 0.5em;
+    padding: 0;
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.4em;
+        color: var(--text-link);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.6;
+        &::before {
+            content: "";
+            width: 0.6em;
+            height: 0.6em;
+            border-radius: 50%;
+            background-color: var(--theme-color);
         }
     }
 }

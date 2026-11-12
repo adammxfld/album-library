@@ -2,6 +2,7 @@ import "./MyPicks.scss";
 import { useEffect, useState } from "react";
 import { addPick, deletePick, getMyPicks } from "./api.ts";
 import type { Guest, MyPick } from "./api.ts";
+import { lookupAlbum } from "./lookupAlbum.ts";
 import { useRequest } from "./useRequest.ts";
 
 const MAX_PICKS = 25;
@@ -32,7 +33,9 @@ function MyPicks({ login, guest, onChangeLogin }: { login: string; guest: Guest;
 
   function handleAdd() {
     run(async () => {
-      const pick = await addPick(login, artist, title);
+      // A match fixes capitalization and adds art; otherwise save as typed.
+      const match = await lookupAlbum(artist, title);
+      const pick = await addPick(login, match?.artist ?? artist, match?.title ?? title, match?.imageSmall ?? null);
       setPicks((current) => [...(current ?? []), pick]);
       setArtist("");
       setTitle("");
