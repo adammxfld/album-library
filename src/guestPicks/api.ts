@@ -26,11 +26,12 @@ export interface GuestPick extends MyPick {
   color: string;
   guestId: string;
   guestCreatedAt: string;
+  imageSmall: string | null;
 }
 
 type GuestRow = { display_name: string; color: string };
 type PickRow = { id: string; artist: string; title: string; created_at: string };
-type PublicPickRow = PickRow & GuestRow & { guest_id: string; guest_created_at: string };
+type PublicPickRow = PickRow & GuestRow & { guest_id: string; guest_created_at: string; image_small: string | null };
 
 const toGuest = (row: GuestRow): Guest => ({ displayName: row.display_name, color: row.color });
 
@@ -78,11 +79,12 @@ export async function getMyPicks(login: string): Promise<MyPick[]> {
   return (data as PickRow[]).map(toMyPick);
 }
 
-export async function addPick(login: string, artist: string, title: string): Promise<MyPick> {
+export async function addPick(login: string, artist: string, title: string, imageSmall: string | null = null): Promise<MyPick> {
   const { data, error } = await supabase.rpc("add_guest_pick", {
     p_login: login,
     p_artist: artist,
     p_title: title,
+    p_image: imageSmall,
   });
   if (error) fail(error);
   return toMyPick(firstRow<PickRow>(data));
@@ -97,13 +99,14 @@ export async function deletePick(login: string, pickId: string): Promise<void> {
 export async function getAllPicks(): Promise<GuestPick[]> {
   const { data, error } = await supabase
     .from("guest_picks_public")
-    .select("id, artist, title, display_name, color, created_at, guest_id, guest_created_at");
+    .select("id, artist, title, display_name, color, created_at, guest_id, guest_created_at, image_small");
   if (error) fail(error);
   return (data as PublicPickRow[]).map((row) => ({
     ...toMyPick(row),
     ...toGuest(row),
     guestId: row.guest_id,
     guestCreatedAt: row.guest_created_at,
+    imageSmall: row.image_small,
   }));
 }
 

@@ -9,7 +9,12 @@ export type GuestSortOrder = SortOrder | null;
 
 export interface GuestPickEntry extends AlbumListEntry {
   id: string;
+}
+
+export interface GuestLegendItem {
+  guestId: string;
   displayName: string;
+  color: string;
 }
 
 const newSeed = () => Math.floor(Math.random() * 2 ** 31);
@@ -85,13 +90,24 @@ export function useGuestPicks(enabled: boolean) {
 
   const isLoading = enabled && picks === null && error === null;
 
-  const entries: GuestPickEntry[] = sortPicks(picks ?? [], sortOrder, seed).map((pick) => ({
+  const sorted = sortPicks(picks ?? [], sortOrder, seed);
+  const isGrouped = sortOrder === null;
+  // Grouped by guest: the name heads each guest's run of picks.
+  const entries: GuestPickEntry[] = sorted.map((pick, i) => ({
     id: pick.id,
     artist: pick.artist,
     title: pick.title,
     themeColor: pick.color,
-    displayName: pick.displayName,
+    imageSmall: pick.imageSmall,
+    groupLabel: isGrouped && pick.guestId !== sorted[i - 1]?.guestId ? pick.displayName : undefined,
   }));
 
-  return { entries, isLoading, error, sortOrder, toggleSortOrder, resetSortOrder };
+  // Alphabetical or random: every guest listed once above the picks, in the order they joined.
+  const legend: GuestLegendItem[] = isGrouped
+    ? []
+    : sortPicks(picks ?? [], null, seed)
+        .filter((pick, i, all) => pick.guestId !== all[i - 1]?.guestId)
+        .map(({ guestId, displayName, color }) => ({ guestId, displayName, color }));
+
+  return { entries, legend, isLoading, error, sortOrder, toggleSortOrder, resetSortOrder };
 }

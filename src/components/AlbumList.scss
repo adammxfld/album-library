@@ -90,8 +90,7 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  img,
-  .copy-guest{
+  img {
     position: absolute;
     top: 0.5em;
     right: 0.75em;
@@ -99,15 +98,26 @@
     width: auto;
     opacity: 0.7;
     font-size: 14px;
-  } 
-  .copy-guest {
-    color: var(--album-copy);
-    opacity: 0.8;
-    width: 3.5em;
-    line-height: 0.9;
-    font-size: 14px;
-    word-break: break-word;
-    z-index: calc(var(--entry-z-index) + 1);
+  }
+}
+
+// A line above a row, e.g. the guest's name in Guest Picks.
+.album-group-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4em;
+  margin-top: 0.6em;
+  padding-inline: 0.5em;
+  color: var(--text-link);
+  font-size: 14px;
+  font-weight: 600;
+  &::before {
+    content: "";
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    background-color: var(--theme-color);
   }
 }
 

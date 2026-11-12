@@ -14,6 +14,8 @@ import './App.scss';
 
 function App() {
   const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);
+  // Goes up each time Guest Picks is clicked while already showing, to point at "add yours".
+  const [addYoursCue, setAddYoursCue] = useState(0);
   const isLargeScreen = useMediaQuery("(min-width: 768px)");
   const {
     tierGroup,
@@ -32,10 +34,15 @@ function App() {
   const guestPicks = useGuestPicks(isGuestPicks);
 
   function handleTierChange(tier: TierGroup) {
+    if (tier === "guest-picks" && isGuestPicks) {
+      setAddYoursCue((n) => n + 1);
+      return;
+    }
     if (tier === "guest-picks") {
       // Entering Guest Picks starts grouped by guest, with no Spotlight.
       guestPicks.resetSortOrder();
       setSelectedAlbum(null);
+      setAddYoursCue(0);
     }
     setTierGroup(tier);
   }
@@ -55,7 +62,7 @@ function App() {
           <AlbumList                           
             albums={guestPicks.entries}
             isLoading={guestPicks.isLoading}
-            header={<GuestPicks />}
+            header={<GuestPicks cue={addYoursCue} legend={guestPicks.legend} />}
           />  
         ) : (
           <AlbumList albums={filteredAlbums} selectedAlbum={selectedAlbum} onSelectAlbum={setSelectedAlbum} />
